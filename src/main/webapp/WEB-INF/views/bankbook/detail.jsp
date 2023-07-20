@@ -12,7 +12,7 @@
 	<c:import url="../temp/header.jsp"></c:import>
 	<section>
 		<h1>Detail Page</h1>
-
+		<h1>${requestScope.num}</h1>
 		<!-- Getter 이름 : 메서드에서 get을 제외하고 첫번째글자를 소문자로 바꾼것 -->
 		<h1>${requestScope.dto.bookName}</h1>
 		<!-- 영역.속성명.게터이름-->

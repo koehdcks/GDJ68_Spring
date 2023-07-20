@@ -12,7 +12,7 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 
-	<section>
+	<section class="container mt-5">
 		<h1>Add PAGE</h1>
 
 		<form action="./add" method="post">
@@ -26,11 +26,17 @@
 		</div>
 			<label for="formRate" class="form-label">이자율</label>
 			<input type="text" name="bookRate" id="formRate" class="form-control"><br>
-			<p>
-				판매가능 <input type="radio" value="1" checked name="bookSale" class="form-check-input"><br>
-				<!--1번째방법 -->
-				판매중지 <input type="radio" value="0" name="bookSale" class="form-check-input"><br>
-			</p>
+		<div>
+			 <input type="radio" value="1" checked name="bookSale" class="form-check-input">판매가능<br>
+			
+			 <input type="radio" value="0" name="bookSale" class="form-check-input">판매중지<br>
+		</div>
+		<div>	
+			축구 <input type="checkbox" value="FootBall" checked name="sports" class="form-check-input"><br>
+			농구 <input type="checkbox" value="BasketBall" name="sports" class="form-check-input"><br>
+			야구 <input type="checkbox" value="BaseBall" checked name="sports" class="form-check-input"><br>
+			배구 <input type="checkbox" value="VallyBall" name="sports" class="form-check-input"><br>
+		</div>
 			<!-- <select name="bookSale">     2번째방법
 				<option value="1" selected>판매가능</option>     
 				<option value="0">판매중지</option>
