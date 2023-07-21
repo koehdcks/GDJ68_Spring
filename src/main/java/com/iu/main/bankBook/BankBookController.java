@@ -30,13 +30,21 @@ public class BankBookController {
 		mv.setViewName("bankbook/detail");
 		return mv;
 	}
+	
+	//폼이동
 	@RequestMapping(value="add",method = RequestMethod.GET)
-	public String getAdd() throws Exception{
-		return "bankbook/add";
+	public void setAdd() throws Exception{
+		
+	}
+	
+	//db insert
+	@RequestMapping(value="add", method = RequestMethod.POST)
+	public String setAdd(BankBookDTO bankBookDTO) throws Exception{
+		int result = bankBookService.setAdd(bankBookDTO);
+		return "redirect: ./list";
 	}
 	
 	@RequestMapping(value="update",method = RequestMethod.GET)
-	public String getUpdate() throws Exception{
-		return "bankbook/update";
+	public void getUpdate() throws Exception{
 	}
 }

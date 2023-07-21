@@ -11,4 +11,8 @@
   	<select id="getList" resultType="com.iu.main.bankBook.BankBookDTO">
   		SELECT BOOKNUM,BOOKNAME,BOOKRATE,BOOKSALE FROM BANKBOOK ORDER BY BOOKNUM DESC
   	</select>
+  	
+  	<insert id="setAdd" parameterType="com.iu.main.bankBook.BankBookDTO">
+  		INSERT INTO BANKBOOK VALUES(BANK_SEQ.NEXTVAL, #{bookName}, #{bookContents}, #{bookRate}, #{bookSale})
+  	</insert>
   </mapper>
