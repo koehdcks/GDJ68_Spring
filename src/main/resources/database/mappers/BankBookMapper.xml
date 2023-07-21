@@ -15,4 +15,17 @@
   	<insert id="setAdd" parameterType="com.iu.main.bankBook.BankBookDTO">
   		INSERT INTO BANKBOOK VALUES(BANK_SEQ.NEXTVAL, #{bookName}, #{bookContents}, #{bookRate}, #{bookSale})
   	</insert>
+  	
+  	<delete id="setDelete" parameterType="java.lang.Long">
+  		DELETE BANKBOOK WHERE BOOKNUM = #{num}
+  	</delete>
+  	
+  	<update id="setUpdate"  parameterType="com.iu.main.bankBook.BankBookDTO">
+  		UPDATE BANKBOOK SET 
+  		BOOKNAME=#{bookName},
+  		BOOKCONTENTS=#{bookContents},
+  		BOOKRATE=#{bookRate},
+  		BOOKSALE=#{bookSale} WHERE BOOKNUM = #{bookNum} 
+  	</update>
+  	
   </mapper>

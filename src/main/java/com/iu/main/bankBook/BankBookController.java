@@ -31,7 +31,7 @@ public class BankBookController {
 		return mv;
 	}
 	
-	//폼이동
+	//form
 	@RequestMapping(value="add",method = RequestMethod.GET)
 	public void setAdd() throws Exception{
 		
@@ -44,7 +44,27 @@ public class BankBookController {
 		return "redirect: ./list";
 	}
 	
+	//수정form
 	@RequestMapping(value="update",method = RequestMethod.GET)
-	public void getUpdate() throws Exception{
+	public void setUpdate(BankBookDTO bankBookDTO,Model model) throws Exception{
+		bankBookDTO = bankBookService.getDetail(bankBookDTO);
+		model.addAttribute("dto",bankBookDTO);
+		
+		
+	}
+	
+	//db update
+	@RequestMapping(value="update",method = RequestMethod.POST)
+	public String setUpdate(BankBookDTO bankBookDTO) throws Exception{
+		int result = bankBookService.setUpdate(bankBookDTO);
+		return "redirect: ./list";
+//		return "redirect: ./detail?bookNum="+bankBookDTO.getBookNum();
+		
+	}
+	
+	@RequestMapping(value="delete", method = RequestMethod.GET)
+	public String setDelete(Long bookNum) throws Exception{
+		int result = bankBookService.setDelete(bookNum);
+		return "redirect: ./list";
 	}
 }
