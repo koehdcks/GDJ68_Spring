@@ -33,7 +33,13 @@ public class StudentController {
 		
 	}
 	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public String getAdd() throws Exception{
+	public String setAdd() throws Exception{
 		return "student/add";
+	}
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String setAdd(StudentDTO studentDTO,ModelAndView mv) throws Exception{
+		int result = studentService.setAdd(studentDTO);
+		mv.addObject("dto", studentDTO);
+		return "redirect: ./list";
 	}
 }

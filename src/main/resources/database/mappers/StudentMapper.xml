@@ -11,4 +11,12 @@
  		<select id="getDetail" resultType="com.iu.main.student.StudentDTO" parameterType="com.iu.main.student.StudentDTO">
  			SELECT * FROM STUDENT WHERE STUNUM=#{stuNum}
  		</select>
+ 		
+ 		<insert id="setAdd" parameterType="com.iu.main.student.StudentDTO">
+ 			INSERT INTO STUDENT VALUES(STU_SEQ.NEXTVAL,#{stuName},#{stuKor},#{stuEng},#{stuMath},#{stuTotal},#{stuAvg})
+ 		</insert>
+ 		
+ 		<update id="setUpdate" parameterType="com.iu.main.student.StudentDTO">
+ 			UPDATE STUDENT SET 
+ 		</update>
  	</mapper>

@@ -11,4 +11,5 @@
   	<select id="getList" resultType="com.iu.main.bankBook.BankBookDTO">
   		SELECT BOOKNUM,BOOKNAME,BOOKRATE,BOOKSALE FROM BANKBOOK ORDER BY BOOKNUM DESC
   	</select>
+  
   </mapper>
