@@ -17,18 +17,16 @@
 
 		<table class="table table-dark table-hover mt-3">
 			<thead>
+				<th>학생번호</th>
 				<th>학생명</th>
-				<th>총점</th>
-				<th>평균</th>
 			</thead>
 			<tbody>
 				<c:forEach items="${list}" var="d" varStatus="i">
 					<!--list를 items에 넣고 하나씩 d에 대입하며 출력반복-->
 					<tr>
+						<td>${d.stuNum }</td>
 						<td><a href="./detail?stuNum=${d.stuNum}">
 								${d.stuName}</td>
-						<td>${d.stuTotal}</td>
-						<td>${d.stuAvg }</td>
 					</tr>
 				</c:forEach>
 
