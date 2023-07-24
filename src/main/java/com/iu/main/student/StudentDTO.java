@@ -27,11 +27,9 @@ public class StudentDTO {
 		return stuMath;
 	}
 	public Integer getStuTotal() {
-		this.stuTotal = this.stuKor+this.stuEng+this.stuMath;
 		return stuTotal;
 	}
 	public Double getStuAvg() {
-		this.stuAvg=this.stuTotal/3.0;
 		return stuAvg;
 	}
 	public void setStuNum(Long stuNum) {
