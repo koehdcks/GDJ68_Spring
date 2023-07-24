@@ -1,5 +1,8 @@
 package com.iu.main.member;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -8,17 +11,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/member/*")
 public class MemberController {
 	
-	@RequestMapping(value="join",method = RequestMethod.GET)
-	public String getJoin() throws Exception{
-		return "member/join";
-	}
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping(value="login",method = RequestMethod.GET)
-	public String getLogin() throws Exception{
-		return "member/login";
+	public void getLogin() throws Exception{
+		
 	}
-	@RequestMapping(value="mypage",method = RequestMethod.GET)
-	public String getMyPage() throws Exception{
-		return "member/mypage";
+	@RequestMapping(value="login",method = RequestMethod.POST)
+	public String getLogin(MemberDTO memberDTO, HttpSession session) throws Exception{
+		memberDTO = memberService.getLogin(memberDTO);
+		
+		if(memberDTO != null) {
+			session.setAttribute("member", memberDTO);
+		}
+		return "redirect:/"; 
 	}
+	
 }
