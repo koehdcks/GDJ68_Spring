@@ -25,7 +25,19 @@ public class MemberController {
 		if(memberDTO != null) {
 			session.setAttribute("member", memberDTO);
 		}
-		return "redirect:/"; 
+		return "redirect:../"; 
+	}
+	
+	//로그아웃
+	@RequestMapping(value="logout",method = RequestMethod.GET)
+	public String getLogout(HttpSession session) throws Exception{
+		session.invalidate();
+		
+		return "redirect:../"; 
+	}
+	@RequestMapping(value="mypage",method = RequestMethod.GET )
+	public void getMypage() throws Exception{
+		
 	}
 	
 }

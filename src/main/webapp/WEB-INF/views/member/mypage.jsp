@@ -12,9 +12,19 @@
 	<section class="container mt-5">
 	<h1 class="my-4">My Page</h1>
 	
+	<div>
+		<p>
+			${member.id} : ${member.name}
+		</p>
+		<p>
+			${member.email}
+		</p>
+		<p>
+			${member.birth}
+		</p>
+		
+	</div>
 	
-	<h3>${member.id}</h3>
-	<h3>${member.name}</h3>
 	</section>
 </body>
 </html>
