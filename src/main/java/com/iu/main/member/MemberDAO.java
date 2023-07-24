@@ -14,4 +14,8 @@ public class MemberDAO {
 		public MemberDTO getLogin(MemberDTO memberDTO) throws Exception{
 			return sqlSession.selectOne(NAMESPACE+"getLogin", memberDTO);
 		}
+		
+		public int setMemberUpdate(MemberDTO memberDTO) throws Exception{
+			return sqlSession.update(NAMESPACE+"setMemberUpdate", memberDTO);
+		}
 }

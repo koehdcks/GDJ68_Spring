@@ -9,5 +9,10 @@
   		SELECT * FROM MEMBER
   		WHERE ID=#{id} AND PW=#{pw}
   </select>
+  <update id="setMemberUpdate" parameterType="MemberDTO">
+  		UPDATE MEMBER SET
+  		PW=#{pw}, NAME=#{name}, EMAIL=#{email}, BIRTH=#{birth}
+  		WHERE ID=#{id}
+  </update>
   
   </mapper>

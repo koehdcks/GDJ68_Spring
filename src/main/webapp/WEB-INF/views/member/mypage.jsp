@@ -25,6 +25,8 @@
 		
 	</div>
 	
+	<a class="btn btn-primary" href="./memberUpdate">회원수정</a>
+	
 	</section>
 </body>
 </html>
