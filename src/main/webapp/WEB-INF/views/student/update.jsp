@@ -21,11 +21,10 @@
 			<input type="text" name="stuName" class="form-control" id="formName" value="${dto.stuName}"><br>
 	
 			
-			국<input type="text" name="stuRate" value="${dto.stuKor }"><br>
-			영<input type="text" name="stuRate" value="${dto.stuEng }"><br>
-			수<input type="text" name="stuRate" value="${dto.stuMath }"><br>
-			총<input type="text" name="stuRate" value="${dto.stuTotal }"><br>
-			평<input type="text" name="stuRate" value="${dto.stuAvg }"><br>
+			국<input type="text" name="stuKor" value="${dto.stuKor}"><br>
+			영<input type="text" name="stuEng" value="${dto.stuEng}"><br>
+			수<input type="text" name="stuMath" value="${dto.stuMath}"><br>
+			
 			
 			<!-- <select name="bookSale">     2번째방법
 				<option value="1" selected>판매가능</option>     

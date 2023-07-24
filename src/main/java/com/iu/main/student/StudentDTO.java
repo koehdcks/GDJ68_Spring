@@ -9,8 +9,8 @@ public class StudentDTO {
 	private Integer stuTotal;
 	private Double stuAvg;
 	
-	public void calcData() {
-		this.stuTotal = this.stuKor+this.stuEng+this.stuMath;
+	public StudentDTO(){
+		this.stuTotal= this.stuMath+this.stuKor+this.stuEng;
 		this.stuAvg= this.stuTotal/3.0;
 	}
 	
@@ -33,6 +33,7 @@ public class StudentDTO {
 		return stuTotal;
 	}
 	public Double getStuAvg() {
+		this.stuAvg=this.stuTotal/3.0;
 		return stuAvg;
 	}
 	public void setStuNum(Long stuNum) {

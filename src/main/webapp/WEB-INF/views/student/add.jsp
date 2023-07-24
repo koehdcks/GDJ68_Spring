@@ -32,15 +32,6 @@
 			<label for="formMath" class="form-label">수학점수</label>
 			<input type="text" name="stuMath" id="formMath" class="form-control"><br>
 		</div>
-		<div>
-			<label for="formTotal" class="form-label">총점</label>
-			<input type="text" name="stuTotal" id="formMath" class="form-control"><br>
-		</div>
-		<div>
-			<label for="formAvg" class="form-label">평균</label>
-			<input type="text" name="stuAvg" id="formMath" class="form-control"><br>
-		</div>
-		
 	
 			<!-- <select name="bookSale">     2번째방법
 				<option value="1" selected>판매가능</option>     

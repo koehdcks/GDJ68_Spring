@@ -31,6 +31,11 @@ public class StudentDAO {
 	}
 	
 	//update
-	
+	public int setUpdate(StudentDTO studentDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setUpdate", studentDTO);
+	}
 	//delete
+	public int setDelete(StudentDTO studentDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setDelete", studentDTO);
+	}
 }

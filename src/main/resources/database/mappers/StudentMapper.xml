@@ -17,6 +17,12 @@
  		</insert>
  		
  		<update id="setUpdate" parameterType="com.iu.main.student.StudentDTO">
- 			UPDATE STUDENT SET 
+ 			UPDATE STUDENT 
+ 			SET STUNAME=#{stuName},STUKOR=#{stuKor},STUENG=#{stuEng},STUMATH=#{stuMath},STUTOTAL=#{stuTotal},STUAVG=#{stuAvg}
+ 			WHERE STUNUM=#{stuNum}
  		</update>
+ 		
+ 		<delete id="setDelete" parameterType="com.iu.main.student.StudentDTO">
+ 			DELETE STUDENT WHERE STUNUM= #{stuNum}
+ 		</delete>
  	</mapper>
