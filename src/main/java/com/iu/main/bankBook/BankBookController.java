@@ -57,8 +57,7 @@ public class BankBookController {
 	@RequestMapping(value="update",method = RequestMethod.POST)
 	public String setUpdate(BankBookDTO bankBookDTO) throws Exception{
 		int result = bankBookService.setUpdate(bankBookDTO);
-		return "redirect: ./list";
-//		return "redirect: ./detail?bookNum="+bankBookDTO.getBookNum();
+		return "redirect: ./detail?bookNum="+bankBookDTO.getBookNum();
 		
 	}
 	
