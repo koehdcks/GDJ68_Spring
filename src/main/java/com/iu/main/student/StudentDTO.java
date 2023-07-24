@@ -9,10 +9,7 @@ public class StudentDTO {
 	private Integer stuTotal;
 	private Double stuAvg;
 	
-	public StudentDTO(){
-		this.stuTotal= this.stuMath+this.stuKor+this.stuEng;
-		this.stuAvg= this.stuTotal/3.0;
-	}
+
 	
 	public Long getStuNum() {
 		return stuNum;
@@ -30,6 +27,7 @@ public class StudentDTO {
 		return stuMath;
 	}
 	public Integer getStuTotal() {
+		this.stuTotal = this.stuKor+this.stuEng+this.stuMath;
 		return stuTotal;
 	}
 	public Double getStuAvg() {
