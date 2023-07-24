@@ -54,8 +54,11 @@ public class MemberController {
 			session.setAttribute("member", memberDTO);
 		}
 		
-		
 		return "redirect: ./mypage";
+	}
+	@RequestMapping(value = "join",method = RequestMethod.GET)
+	public void setJoin() throws Exception{
+		
 	}
 	
 	
