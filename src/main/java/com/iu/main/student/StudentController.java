@@ -39,6 +39,8 @@ public class StudentController {
 	}
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String setAdd(StudentDTO studentDTO,ModelAndView mv) throws Exception{
+		studentDTO.setStuTotal(studentDTO.getStuKor()+studentDTO.getStuEng()+studentDTO.getStuMath());
+		studentDTO.setStuAvg(studentDTO.getStuTotal()/3.0);
 		int result = studentService.setAdd(studentDTO);
 		mv.addObject("dto", studentDTO);
 		return "redirect: ./list";
@@ -52,6 +54,8 @@ public class StudentController {
 	
 	@RequestMapping(value = "update", method =RequestMethod.POST)
 	public String setUpdate(StudentDTO studentDTO) throws Exception{
+		studentDTO.setStuTotal(studentDTO.getStuKor()+studentDTO.getStuEng()+studentDTO.getStuMath());
+		studentDTO.setStuAvg(studentDTO.getStuTotal()/3.0);
 		int result = studentService.setUpdate(studentDTO);
 		return "redirect: ./detail?stuNum=" +studentDTO.getStuNum();
 	}
