@@ -22,10 +22,12 @@ public class NoticeController {
 		return "board/list";
 		
 	}
+	
 	@RequestMapping(value = "add",method = RequestMethod.GET)
 	public String setAdd() throws Exception{
 		return "board/add";
 	}
+	
 	@RequestMapping(value = "add",method = RequestMethod.POST)
 	public String setAdd(NoticeDTO noticeDTO,Model model) throws Exception{
 		int result = noticeService.setAdd(noticeDTO);
@@ -38,4 +40,24 @@ public class NoticeController {
 		model.addAttribute("dto", noticeDTO);
 		return "board/detail";
 	}
+	
+	@RequestMapping(value = "update",method = RequestMethod.GET)
+	public String setUpdate(NoticeDTO noticeDTO,Model model) throws Exception{
+		noticeDTO = noticeService.getDetail(noticeDTO);
+		model.addAttribute("dto", noticeDTO);
+		return "board/update";
+	}
+	
+	@RequestMapping(value = "update",method = RequestMethod.POST)
+	public String setUpdate(NoticeDTO noticeDTO) throws Exception{
+		int result = noticeService.setUpdate(noticeDTO);
+		return "redirect:./detail?noticeNum="+noticeDTO.getNoticeNum();
+	}
+	
+	@RequestMapping(value = "delete",method = RequestMethod.GET)
+	public String setDelete(NoticeDTO noticeDTO) throws Exception{
+		int result = noticeService.setDelete(noticeDTO);
+		return "redirect:./list";
+	}
+	
 }

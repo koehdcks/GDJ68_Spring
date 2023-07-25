@@ -22,4 +22,12 @@ public class NoticeService {
 	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception{
 		return noticeDAO.getDetail(noticeDTO);
 	}
+	
+	public int setUpdate(NoticeDTO noticeDTO) throws Exception{
+		return noticeDAO.setUpdate(noticeDTO);
+	}
+	
+	public int setDelete(NoticeDTO noticeDTO) throws Exception{
+		return noticeDAO.setDelete(noticeDTO);
+	}
 }

@@ -49,8 +49,6 @@ public class BankBookController {
 	public void setUpdate(BankBookDTO bankBookDTO,Model model) throws Exception{
 		bankBookDTO = bankBookService.getDetail(bankBookDTO);
 		model.addAttribute("dto",bankBookDTO);
-		
-		
 	}
 	
 	//db update

@@ -39,7 +39,7 @@
 		</table>
 		
 		
-		<a href="./update?noticeNum=${dto.noticeNum}" class="btn btn-warning">수정</a> 
+		<a href="./update?noticeNum=${dto.noticeNum }" class="btn btn-warning">수정</a> 
 		<a href="./delete?noticeNum=${dto.noticeNum}" class="btn btn-danger">삭제</a>
 		
 	</section>
