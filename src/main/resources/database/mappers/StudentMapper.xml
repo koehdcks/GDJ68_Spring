@@ -5,24 +5,24 @@
 
 
  	<mapper namespace="com.iu.main.student.StudentDAO">
- 		<select id="getList" resultType="com.iu.main.student.StudentDTO">
+ 		<select id="getList" resultType="StudentDTO">
  			SELECT * FROM STUDENT ORDER BY STUNUM DESC
  		</select>
- 		<select id="getDetail" resultType="com.iu.main.student.StudentDTO" parameterType="com.iu.main.student.StudentDTO">
+ 		<select id="getDetail" resultType="StudentDTO" parameterType="StudentDTO">
  			SELECT * FROM STUDENT WHERE STUNUM=#{stuNum}
  		</select>
  		
- 		<insert id="setAdd" parameterType="com.iu.main.student.StudentDTO">
+ 		<insert id="setAdd" parameterType="StudentDTO">
  			INSERT INTO STUDENT VALUES(STU_SEQ.NEXTVAL,#{stuName},#{stuKor},#{stuEng},#{stuMath},#{stuTotal},#{stuAvg})
  		</insert>
  		
- 		<update id="setUpdate" parameterType="com.iu.main.student.StudentDTO">
+ 		<update id="setUpdate" parameterType="StudentDTO">
  			UPDATE STUDENT 
  			SET STUNAME=#{stuName},STUKOR=#{stuKor},STUENG=#{stuEng},STUMATH=#{stuMath},STUTOTAL=#{stuTotal},STUAVG=#{stuAvg}
  			WHERE STUNUM=#{stuNum}
  		</update>
  		
- 		<delete id="setDelete" parameterType="com.iu.main.student.StudentDTO">
+ 		<delete id="setDelete" parameterType="StudentDTO">
  			DELETE STUDENT WHERE STUNUM= #{stuNum}
  		</delete>
  	</mapper>

@@ -12,7 +12,7 @@
 	<section class="container mt-5">
 		<h1>회원가입</h1>
 
-		<form action="./join.do" method="post">
+		<form action="./join" method="post">
 		<div>
 			<label for="formId" class="form-label">아이디</label>
 			<input type="text" name="id" class="form-control" id="formId"><br>
@@ -34,7 +34,7 @@
 			<input type="date" name="birth" id="formBirth">
 		</div>
 		<div>
-			<button class="btn btn-success">회원가입</button>
+			<button type="submit" class="btn btn-success">회원가입</button>
 		</div>
 
 		</form>
