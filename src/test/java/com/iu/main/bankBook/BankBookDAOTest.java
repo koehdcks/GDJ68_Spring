@@ -14,11 +14,11 @@ public class BankBookDAOTest extends Mytest{
 	
 	@Autowired
 	private BankBookDAO bankBookDAO;
-	@Test
-	public void listTest() throws Exception {
-		List list = bankBookDAO.getList();
-		
-		assertNotNull(list);
-	}
 	
+	@Test
+	public void getListTest() throws Exception{
+		List<BankBookDTO> ar = bankBookDAO.getList();
+		assertNotEquals(0, ar.size());
+		
+	}
 }
