@@ -27,9 +27,19 @@ public class BankBookDAO {
 		
 		
 	}
+	
 	//add
+	public int setAdd(BankBookDTO bankBookDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAdd", bankBookDTO);
+	}
 	
 	//update
+	public int setUpdate(BankBookDTO bankBookDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setUpdate", bankBookDTO);
+	}
 	
 	//delete
+	public int setDelete(Long num) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setDelete", num );
+	}
 }

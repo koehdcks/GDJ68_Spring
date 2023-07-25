@@ -18,4 +18,16 @@ public class BankBookService {
 	public List<BankBookDTO> getList() throws Exception{
 		return bankBookDAO.getList();
 	}
+	
+	public int setAdd(BankBookDTO bankBookDTO) throws Exception{
+		return bankBookDAO.setAdd(bankBookDTO);
+	}
+	
+	public int setDelete(Long num) throws Exception{
+		return bankBookDAO.setDelete(num);
+	}
+	
+	public int setUpdate(BankBookDTO bankBookDTO) throws Exception{
+		return bankBookDAO.setUpdate(bankBookDTO);
+	}
 }
