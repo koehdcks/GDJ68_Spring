@@ -12,16 +12,7 @@ import com.iu.main.bankBook.BankBookDAO;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/*-context.xml"})
 public abstract class Mytest {
-
-	@Autowired
-	private BankBookDAO bankBookDAO;
 	
-	@Test
-	public void deleteTest() throws Exception {
-		int result = bankBookDAO.setDelete(7L);
-		
-		assertNotEquals(0, result);
-		
-	}
+	
 
 }

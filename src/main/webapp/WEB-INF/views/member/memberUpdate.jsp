@@ -10,7 +10,7 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="container mt-5">
-		<h1>회원가입</h1>
+		<h1>회원정보수정</h1>
 
 		<form action="./memberUpdate" method="post">
 		<div>
