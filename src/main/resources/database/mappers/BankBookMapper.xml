@@ -13,7 +13,7 @@
   	</select>
   	
   	<insert id="setAdd" parameterType="BankBookDTO">
-  		INSERT INTO BANKBOOK VALUES(BANK_SEQ.NEXTVAL, #{bookName}, #{bookContents}, #{bookRate}, #{bookSale})
+  		INSERT INTO BANKBOOK VALUES(BANK_SEQ.NEXTVAL, #{bookName}, #{bookRate}, #{bookSale}, #{bookContents})
   	</insert>
   	
   	<delete id="setDelete" parameterType="java.lang.Long">
