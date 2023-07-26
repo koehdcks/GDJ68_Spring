@@ -4,9 +4,21 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.iu.main.notice.NoticeDAO">
+	
+	<select id="getTotal" resultType="Long">
+		SELECT COUNT(NOTICENUM) FROM NOTICE
+	</select>
 
-  	<select id="getList" resultType="NoticeDTO">
-  		SELECT NOTICENUM,NOTICENAME,NOTICETITLE,NOTICEDATE,NOTICEHIT FROM NOTICE ORDER BY NOTICENUM DESC
+  	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
+  		SELECT NOTICENUM,NOTICENAME,NOTICETITLE,NOTICEDATE,NOTICEHIT FROM 
+  				(SELECT ROWNUM R, B.NOTICENUM,B.NOTICENAME,B.NOTICETITLE,B.NOTICEDATE,B.NOTICEHIT FROM
+  					(SELECT NOTICENUM,NOTICENAME,NOTICETITLE,NOTICEDATE,NOTICEHIT
+  					FROM NOTICE
+  					WHERE NOTICENUM>0
+  					ORDER BY NOTICENUM DESC) B
+  				)
+  		WHERE R BETWEEN #{startRow} AND #{lastRow}
+  				
   	</select>
   	
   	<select id="getDetail" resultType="NoticeDTO" parameterType="NoticeDTO">

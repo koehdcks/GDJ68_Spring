@@ -14,13 +14,18 @@ public class NoticeDAOTest extends Mytest  {
 	private NoticeDAO noticeDAO;
 	
 	@Test
-	public void getListTest() throws Exception {
-		List<NoticeDTO> ar = noticeDAO.getList();
-		assertNotEquals(0, ar.size());
-	}
-	@Test
-	public void setAddTest() throws Exception{
+	public void addTest() throws Exception {
+		NoticeDTO noticeDTO = new NoticeDTO();
+		
+		for(int i=0;i<30;i++) {
+			noticeDTO.setNoticeName("adfasa");
+			noticeDTO.setNoticeContents("asdfasdf");
+			noticeDTO.setNoticeTitle("asdfasdf");
+			noticeDAO.setAdd(noticeDTO);
+		}
+		System.out.println("fnish");
 		
 	}
+
 
 }

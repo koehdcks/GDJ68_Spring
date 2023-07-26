@@ -27,13 +27,13 @@ public class BankBookDAOTest extends Mytest{
 //		System.out.println(ar.get(9).getBookNum());
 //	}
 	
-//	@Test
+	@Test
 	public void addTest() throws Exception {
 		BankBookDTO bankBookDTO = new BankBookDTO();
 		
 		for(int i=0;i<30;i++) {
-			bankBookDTO.setBookName("찬찬찬"+i);
-			bankBookDTO.setBookContents("찬찬찬 내용"+i);
+			bankBookDTO.setBookName("asdfadsf"+i);
+			bankBookDTO.setBookContents("asdfasdf"+i);
 			bankBookDTO.setBookRate(2.3);
 			bankBookDTO.setBookSale(1);
 			bankBookDAO.setAdd(bankBookDTO);
