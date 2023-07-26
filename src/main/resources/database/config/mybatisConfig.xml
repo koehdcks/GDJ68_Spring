@@ -8,5 +8,7 @@
 		<typeAlias type="com.iu.main.bankBook.BankBookDTO" alias="BankBookDTO"/>
 		<typeAlias type="com.iu.main.member.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.iu.main.notice.NoticeDTO" alias="NoticeDTO"/>
+		<typeAlias type="com.iu.main.util.Pager" alias="Pager"/>
+		<typeAlias type="java.lang.Long" alias="Long"/>
 	</typeAliases>
 </configuration>

@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
-	
+
 	<section class="container mt-5">
 		<h1 class="text-center">BankBook List</h1>
 
@@ -25,8 +25,8 @@
 					<!--list를 items에 넣고 하나씩 d에 대입하며 출력반복-->
 					<tr>
 						<td><a href="./detail?bookNum=${d.bookNum}">
-								${d.bookName}</td>
-						<td>${d.bookRate}${i.index}</td>
+								${d.bookName}</a></td>
+						<td>${d.bookRate}</td>
 
 					</tr>
 				</c:forEach>
@@ -35,11 +35,23 @@
 
 		</table>
 
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				<li class="page-item"><a class="page-link" href="./list?page=${pager.startNum-1}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+				</a></li>
+				<c:forEach begin="${pager.startNum }" end="${pager.lastNum}" var="i">
+				<li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+				</c:forEach>
+				<li class="page-item"><a class="page-link" href="./list?page=${pager.lastNum+1}"aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+		</nav>
+
 		<a class="btn btn-success" href="./add">상품등록</a>
 	</section>
 	<%-- <c:forEach begin="1" end="10" step="2" var="num"> <!--begin = 시작값 end = 끝값 step= 증가단위 var= 변수  -->
 		<h1>${num}</h1>
 	</c:forEach> --%>
-	
+
 </body>
 </html>
