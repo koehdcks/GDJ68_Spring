@@ -17,8 +17,10 @@
 
 		<table class="table table-dark table-hover mt-3">
 			<thead>
-				<th>상품명</th>
-				<th>이자율</th>
+				<tr>
+					<th>상품명</th>
+					<th>이자율</th>
+				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${list}" var="d" varStatus="i">
