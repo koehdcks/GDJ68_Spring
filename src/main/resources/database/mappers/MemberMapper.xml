@@ -5,11 +5,14 @@
   
   <mapper namespace="com.iu.main.member.MemberDAO">
   	
+  	<!-- 로그인 -->
   	<select id="getLogin" resultType="MemberDTO" parameterType="MemberDTO">
   		SELECT * FROM MEMBER WHERE ID=#{id} AND PW=#{pw}
   	</select>
   	
+  	<!-- 회원가입 -->
   	<insert id="setJoin" parameterType="MemberDTO">
   		INSERT INTO MEMBER VALUES(#{id},#{pw},#{name},#{email},#{birth})
   	</insert>
+  	
   </mapper>
