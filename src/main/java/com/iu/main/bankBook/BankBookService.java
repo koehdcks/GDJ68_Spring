@@ -20,7 +20,7 @@ public class BankBookService {
 	
 	public List<BankBookDTO> getList(Pager pager) throws Exception{
 		pager.makeRowNum();
-		Long total = bankBookDAO.getTotal();
+		Long total = bankBookDAO.getTotal(pager);
 		pager.makePageNum(total);
 		return bankBookDAO.getList(pager);
 	}

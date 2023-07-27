@@ -1,6 +1,11 @@
 package com.iu.main.util;
 
 public class Pager {
+	//검색
+	private String kind;
+	private String search;
+	
+	/////////////////////////////
 	private Long startRow;
 	private Long lastRow;
 	
@@ -71,7 +76,7 @@ public class Pager {
 		}
 		
 		// 현재 블럭이 마지막 블럭번호와 같다면 lastNum을 totalBlock숫자를 대입
-		if(curBlock == totalBlock) {
+		if(!this.next) {
 			this.lastNum=totalPage; 
 		}
 		
@@ -82,6 +87,25 @@ public class Pager {
 	
 	
 	
+	public String getKind() {
+		return kind;
+	}
+
+	public String getSearch() {
+		if(search==null) {
+			search="";
+		}
+		return search;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
 	public boolean isPre() {
 		return pre;
 	}

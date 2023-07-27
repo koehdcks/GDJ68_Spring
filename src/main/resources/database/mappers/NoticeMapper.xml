@@ -4,9 +4,22 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.iu.main.notice.NoticeDAO">
+	<sql id="searchSql">
+		WHERE NOTICENUM>0 
+  		<if test="kind=='title'">
+  			AND NOTICETITLE LIKE '%'||#{search}||'%'
+  		</if>
+  		<if test="kind=='contents'">
+  			AND NOTICECONTENTS LIKE '%'||#{search}||'%'
+  		</if>
+  		<if test="kind=='name'">
+  			AND NOTICENAME LIKE '%'||#{search}||'%'
+  		</if>
+	</sql>
 	
-	<select id="getTotal" resultType="Long">
+	<select id="getTotal" resultType="Long" parameterType="Pager">
 		SELECT COUNT(NOTICENUM) FROM NOTICE
+		<include refid="searchSql"/>
 	</select>
 
   	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
@@ -14,7 +27,8 @@
   				(SELECT ROWNUM R, B.* FROM
   					(SELECT *
   					FROM NOTICE
-  					WHERE NOTICENUM>0
+  					<include refid="searchSql"/>
+  	
   					ORDER BY NOTICENUM DESC) B
   				)
   		WHERE R BETWEEN #{startRow} AND #{lastRow}

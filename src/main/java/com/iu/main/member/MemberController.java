@@ -4,8 +4,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/member/*")
@@ -59,6 +61,11 @@ public class MemberController {
 	@RequestMapping(value = "join",method = RequestMethod.GET)
 	public void setJoin() throws Exception{
 		
+	}
+	@RequestMapping(value = "join",method = RequestMethod.POST)
+	public String setJoin(MemberDTO memberDTO,MultipartFile pic,HttpSession session) throws Exception{
+		int resut = memberService.setJoin(memberDTO,pic,session);
+		return "redirect:../";
 	}
 	
 	
