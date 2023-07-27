@@ -4,19 +4,45 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.iu.main.bankBook.BankBookDAO">            <!-- mybatisConfig.xml 파일에서 allias 설정하면 패키지명 안써도됨 -->
+  	<sql id="searchSql">
+  		WHERE BOOKNUM>0 AND
+  		<choose>
+				<when test="kind == 'kind'">
+					BOOKNAME LIKE '%'||#{search}||'%'  
+				</when>
+				<otherwise>
+					BOOKCONTENTS LIKE '%'||#{search}||'%'
+				</otherwise>
+			</choose>
+  		 
+  	</sql>
+  
   	<select id="getDetail" resultType="BankBookDTO" parameterType="BankBookDTO">
   		SELECT * FROM BANKBOOK WHERE BOOKNUM=#{bookNum}
   	</select>
   	
-  	<select id="getList" resultType="BankBookDTO">
-  		SELECT BOOKNUM,BOOKNAME,BOOKRATE,BOOKSALE FROM BANKBOOK ORDER BY BOOKNUM DESC
+  	<select id="getTotal" resultType="Long" parameterType="Pager">
+  		SELECT COUNT(BOOKNUM) FROM BANKBOOK <include refid="searchSql"/>
+  		
+  	</select>
+  	
+  	<select id="getList" resultType="BankBookDTO" parameterType="Pager">
+  		SELECT BOOKNUM, BOOKNAME, BOOKRATE, BOOKSALE FROM  
+			(SELECT ROWNUM R, B.* FROM
+				(
+					SELECT * FROM BANKBOOK
+					<include refid="searchSql"/>
+					ORDER BY BOOKNUM DESC
+				) B
+			)                           
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
   	
   	<insert id="setAdd" parameterType="BankBookDTO">
-  		INSERT INTO BANKBOOK VALUES(BANK_SEQ.NEXTVAL, #{bookName}, #{bookRate}, #{bookSale}, #{bookContents})
+  		INSERT INTO BANKBOOK VALUES(BANK_SEQ.NEXTVAL, #{bookName}, #{bookRate}, #{bookSale}, #{bookContents}) <!-- getter의 이름 -->
   	</insert>
   	
-  	<delete id="setDelete" parameterType="java.lang.Long">
+  	<delete id="setDelete" parameterType="Long">
   		DELETE BANKBOOK WHERE BOOKNUM = #{num}
   	</delete>
   	

@@ -18,4 +18,9 @@ public class MemberDAO {
 		public int setMemberUpdate(MemberDTO memberDTO) throws Exception{
 			return sqlSession.update(NAMESPACE+"setMemberUpdate", memberDTO);
 		}
+		
+		public int setJoin(MemberDTO memberDTO) throws Exception{
+//			return sqlSession.insert(NAMESPACE+"setJoin", memberDTO);
+			return 0;
+		}
 }

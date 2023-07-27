@@ -1,9 +1,12 @@
 package com.iu.main.bankBook;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.iu.main.util.Pager;
 
 @Service
 public class BankBookService {
@@ -15,8 +18,11 @@ public class BankBookService {
 		return bankBookDAO.getDatail(bankBookDTO);
 	}
 	
-	public List<BankBookDTO> getList() throws Exception{
-		return bankBookDAO.getList();
+	public List<BankBookDTO> getList(Pager pager) throws Exception{
+		pager.makeRowNum();
+		Long total = bankBookDAO.getTotal(pager);
+		pager.makePageNum(total);
+		return bankBookDAO.getList(pager);
 	}
 	
 	public int setAdd(BankBookDTO bankBookDTO) throws Exception{
