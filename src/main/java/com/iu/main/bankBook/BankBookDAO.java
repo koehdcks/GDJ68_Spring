@@ -36,6 +36,10 @@ public class BankBookDAO {
 		
 	}
 	
+	public int setFileAdd(BankBookFileDTO bankBookFileDTO) {
+		return sqlSession.insert(NAMESPACE+"setFileAdd", bankBookFileDTO);
+	}
+	
 	//add
 	public int setAdd(BankBookDTO bankBookDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setAdd", bankBookDTO);

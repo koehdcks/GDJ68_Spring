@@ -20,7 +20,10 @@ public class MemberDAO {
 		}
 		
 		public int setJoin(MemberDTO memberDTO) throws Exception{
-//			return sqlSession.insert(NAMESPACE+"setJoin", memberDTO);
-			return 0;
+			return sqlSession.insert(NAMESPACE+"setJoin", memberDTO);
+		}
+		
+		public int setFileJoin(MemberFileDTO memberFileDTO) throws Exception{
+			return sqlSession.insert(NAMESPACE+"setFileJoin",memberFileDTO);
 		}
 }
