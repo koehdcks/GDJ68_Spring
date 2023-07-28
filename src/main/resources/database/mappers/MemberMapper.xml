@@ -5,15 +5,36 @@
   
   <mapper namespace="com.iu.main.member.MemberDAO">
   <!-- 로그인 -->
-  <select id="getLogin" resultType="MemberDTO" parameterType="MemberDTO">
-  		SELECT * FROM MEMBER
-  		WHERE ID=#{id} AND PW=#{pw}
+  <select id="getLogin" resultMap="getLoginResult" parameterType="MemberDTO">
+  		SELECT A.*, B.* 
+  		FROM MEMBER A LEFT JOIN MEMBERFILE B
+  		ON (A.ID=B.ID)
+  		WHERE A.ID=#{id} AND A.PW=#{pw}
   </select>
+  <resultMap type="MemberDTO" id="getLoginResult">
+  	<id column="ID" property="id"/>
+  	<result column="PW" property="pw"/>
+  	<result column="NAME" property="name"/>
+  	<result column="EMAIL" property="email"/>
+  	<result column="BIRTH" property="birth"/>
+  	
+  	<association property="memberFileDTO" javaType="MemberFileDTO">
+  		<id column="FILENUM" property="fileNum"/>
+  		<result column="FILENAME" property="fileName"/>
+  		<result column="ORIGINALNAME" property="originalName"/>
+  	</association>
+  </resultMap>
+  
+  
   <update id="setMemberUpdate" parameterType="MemberDTO">
   		UPDATE MEMBER SET
   		PW=#{pw}, NAME=#{name}, EMAIL=#{email}, BIRTH=#{birth}
   		WHERE ID=#{id}
   </update>
+  
+  <insert id="setFileJoin" parameterType="MemberFileDTO">
+  		INSERT INTO MEMBERFILE(FILENUM,ID,FILENAME,ORIGINALNAME) VALUES(MF_SEQ.NEXTVAL,#{id},#{fileName},#{originalName})
+  </insert>
   
   <insert id="setJoin" parameterType="MemberDTO">
   		INSERT INTO MEMBER (ID,PW,NAME,EMAIL,BIRTH) VALUES(#{id},#{pw},#{name},#{email},#{birth})
