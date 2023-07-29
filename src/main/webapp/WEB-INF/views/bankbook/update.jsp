@@ -16,12 +16,17 @@
 		<form action="./update" method="post">
 		<div>
 			<input type="hidden" name="bookNum" value="${dto.bookNum}">
-			<label for="formName" class="form-label">상품명</label>
 		</div>
+		<div>
+			<label for="formName" class="form-label">상품명</label>
 			<input type="text" name="bookName" class="form-control" id="formName" value="${dto.bookName}"><br>
-			상세설명
-			<textarea rows="" cols="" name="bookContents">${dto.bookContents}</textarea>
+		</div>
+		<div>
+			상세설명<textarea rows="" cols="" name="bookContents">${dto.bookContents}</textarea>
+		</div>
+		<div>
 			이자율<input type="text" name="bookRate" value="${dto.bookRate }"><br>
+		</div>
 			<p>
 				판매가능 <input type="radio" value="1" checked name="bookSale"><br>
 				<!--1번째방법 -->
@@ -32,7 +37,7 @@
 				<option value="0">판매중지</option>
 			</select> -->
 
-			<input type="button" value="수정">
+			<button>수정</button>
 			<input type="reset">
 
 		</form>

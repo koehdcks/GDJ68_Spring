@@ -12,7 +12,7 @@
 	<section class="container mt-5">
 		<h1>회원가입</h1>
 
-		<form action="./join.do" method="post">
+		<form action="./join" method="post" enctype="multipart/form-data">
 		<div>
 			<label for="formId" class="form-label">아이디</label>
 			<input type="text" name="id" class="form-control" id="formId"><br>
@@ -33,6 +33,13 @@
 			<label for="formBirth" class="form-label">생년월일</label>
 			<input type="date" name="birth" id="formBirth">
 		</div>
+		
+		<div class="mb-5">
+			<label for="formPic" class="form-label">사진첨부</label>
+			<input type="file" name="pic" id="formPic">
+		</div>
+		
+		
 		<div>
 			<button class="btn btn-success">회원가입</button>
 		</div>

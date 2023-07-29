@@ -3,12 +3,82 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.iu.main.bankBook.BankBookDAO">
-  	<select id="getDetail" resultType="com.iu.main.bankBook.BankBookDTO" parameterType="com.iu.main.bankBook.BankBookDTO">
-  		SELECT * FROM BANKBOOK WHERE BOOKNUM=#{bookNum}
+  <mapper namespace="com.iu.main.bankBook.BankBookDAO">            <!-- mybatisConfig.xml 파일에서 allias 설정하면 패키지명 안써도됨 -->
+  	<sql id="searchSql">
+  		WHERE BOOKNUM>0 AND
+  		<choose>
+				<when test="kind == 'kind'">
+					BOOKNAME LIKE '%'||#{search}||'%'  
+				</when>
+				<otherwise>
+					BOOKCONTENTS LIKE '%'||#{search}||'%'
+				</otherwise>
+			</choose>
+  		 
+  	</sql>
+  
+  	<select id="getDetail" resultMap="getDetailResult" parameterType="BankBookDTO">
+  		
+  		SELECT BB.*,BF.* 
+  		FROM BANKBOOK BB LEFT JOIN BANKFILE BF 
+  		ON (BB.BOOKNUM=BF.BOOKNUM)
+  		WHERE BB.BOOKNUM=#{bookNum}
+  	</select>
+  	<resultMap type="BankBookDTO" id="getDetailResult">
+  		<id column="BOOKNUM" property="bookNum"/>
+  		<result column="BOOKNAME" property="bookName"/>
+  		<result column="BOOKCONTENTS" property="bookContents"/>
+  		<result column="BOOKRATE" property="bookRate"/>
+  		<result column="BOOKSALE" property="bookSale"/>
+  		
+  		<collection property="fileDTOs" javaType="List" ofType="BankBookFileDTO">
+  		<id column="FILENUM" property="fileNum"/>
+  		<result column="FILENAME" property="fileName"/>
+  		<result column="ORIGINALNAME" property="originalName"/>
+  		</collection>
+  	</resultMap>
+  	
+  	
+  	
+  	<select id="getTotal" resultType="Long" parameterType="Pager">
+  		SELECT COUNT(BOOKNUM) FROM BANKBOOK <include refid="searchSql"/>
+  		
   	</select>
   	
-  	<select id="getList" resultType="com.iu.main.bankBook.BankBookDTO">
-  		SELECT BOOKNUM,BOOKNAME,BOOKRATE,BOOKSALE FROM BANKBOOK ORDER BY BOOKNUM DESC
+  	<select id="getList" resultType="BankBookDTO" parameterType="Pager">
+  		SELECT BOOKNUM, BOOKNAME, BOOKRATE, BOOKSALE FROM  
+			(SELECT ROWNUM R, B.* FROM
+				(
+					SELECT * FROM BANKBOOK
+					<include refid="searchSql"/>
+					ORDER BY BOOKNUM DESC
+				) B
+			)                           
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
+  	
+
+  	
+  	<insert id="setAdd" parameterType="BankBookDTO">
+  		<selectKey keyProperty="bookNum" resultType="Long" order="BEFORE">
+  			SELECT BANK_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO BANKBOOK  VALUES(#{bookNum}, #{bookName}, #{bookRate}, #{bookSale}, #{bookContents}) <!-- getter의 이름 -->
+  	</insert>
+  	<insert id="setFileAdd" parameterType="BankBookFILEDTO">
+  	INSERT INTO BANKFILE(FILENUM,BOOKNUM,FILENAME,ORIGINALNAME) VALUES(BF_SEQ.NEXTVAL,#{bookNum},#{fileName},#{originalName}) 
+  	</insert>
+  
+  	<delete id="setDelete" parameterType="Long">
+  		DELETE BANKBOOK WHERE BOOKNUM = #{num}
+  	</delete>
+  	
+  	<update id="setUpdate"  parameterType="BankBookDTO">
+  		UPDATE BANKBOOK SET 
+  		BOOKNAME=#{bookName},
+  		BOOKCONTENTS=#{bookContents},
+  		BOOKRATE=#{bookRate},
+  		BOOKSALE=#{bookSale} WHERE BOOKNUM = #{bookNum} 
+  	</update>
+  	
   </mapper>

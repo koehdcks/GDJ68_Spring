@@ -12,9 +12,24 @@
 	<section class="container mt-5">
 	<h1 class="my-4">My Page</h1>
 	
+	<div>
+		<p>
+			<img alt="" src="../resources/upload/member/${member.memberFileDTO.fileName}">
+		</p>
+		<p>
+			${member.id} : ${member.name}
+		</p>
+		<p>
+			${member.email}
+		</p>
+		<p>
+			${member.birth}
+		</p>
+		
+	</div>
 	
-	<h3>${member.id}</h3>
-	<h3>${member.name}</h3>
+	<a class="btn btn-primary" href="./memberUpdate">회원수정</a>
+	
 	</section>
 </body>
 </html>

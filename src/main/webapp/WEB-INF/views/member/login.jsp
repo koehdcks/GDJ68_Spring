@@ -12,7 +12,7 @@
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="container mt-5">
 		<h1>LOGIN</h1>
-		<form action="./login.do" method="post">
+		<form action="./login" method="post">
 			<div class="mb-3">
 				<label for="formId" class="form-label">아이디</label> 
 				<input type="text" class="form-control" id="formId" name="id">
