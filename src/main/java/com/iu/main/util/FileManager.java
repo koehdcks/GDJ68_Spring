@@ -20,7 +20,7 @@ public class FileManager {
 				//jsp : application
 				//java : ServletContext
 				String realPath = session.getServletContext().getRealPath(path);
-				
+				System.out.println(realPath);
 				File file = new File(realPath); 
 				//경로에 맞는 폴더가 없으면 만들어라 
 				if(!file.exists()) {

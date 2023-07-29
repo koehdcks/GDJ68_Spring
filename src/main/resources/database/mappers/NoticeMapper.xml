@@ -13,7 +13,7 @@
   			AND NOTICECONTENTS LIKE '%'||#{search}||'%'
   		</if>
   		<if test="kind=='name'">
-  			AND NOTICENAME LIKE '%'||#{search}||'%'
+  			AND ID LIKE '%'||#{search}||'%'
   		</if>
 	</sql>
 	
@@ -23,7 +23,7 @@
 	</select>
 
   	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
-  		SELECT NOTICENUM,NOTICENAME,NOTICETITLE,NOTICEDATE,NOTICEHIT FROM 
+  		SELECT NOTICENUM,ID,NOTICETITLE,NOTICEDATE,NOTICEHIT FROM 
   				(SELECT ROWNUM R, B.* FROM
   					(SELECT *
   					FROM NOTICE
@@ -34,13 +34,32 @@
   		WHERE R BETWEEN #{startRow} AND #{lastRow}
   				
   	</select>
-  	
-  	<select id="getDetail" resultType="NoticeDTO" parameterType="NoticeDTO">
-  		SELECT * FROM NOTICE WHERE NOTICENUM=#{noticeNum}
+ 
+  	<select id="getDetail" resultMap="getDetailResult" parameterType="NoticeDTO">
+  		SELECT A.*,B.* FROM NOTICE A LEFT JOIN NOTICEFILE B 
+		ON A.NOTICENUM=B.NOTICENUM 
+		WHERE A.NOTICENUM=#{noticeNum}
   	</select>
+  	<resultMap type="NoticeDTO" id="getDetailResult">
+  		<id column="NOTICENUM" property="noticeNum"/>
+  		<result column="ID" property="id"/>
+  		<result column="NOTICETITLE" property="noticeTitle"/>
+  		<result column="NOTICECONTENTS" property="noticeContents"/>
+  		<result column="NOTICEDATE" property="noticeDate"/>
+  		<result column="NOTICEDHIT" property="noticeHit"/>
+  		
+  		<collection property="fileDTOs" javaType="List" ofType="NoticeFileDTO">
+  		<id column="FILENUM" property="fileNum"/>
+  		<result column="FILENAME" property="fileName"/>
+  		<result column="ORIGINALNAME" property="originalName"/>
+  		</collection>
+  	</resultMap>
   	
   	<insert id="setAdd" parameterType="NoticeDTO">
-  		INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL,#{noticeName},#{noticeTitle},#{noticeContents},SYSDATE,0)
+  	<selectKey keyProperty="noticeNum" resultType="java.lang.Integer" order="BEFORE">
+  			SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO NOTICE VALUES(#{noticeNum},#{id},#{noticeTitle},#{noticeContents},SYSDATE,0)
   	</insert>
   	
   	<update id="setUpdate" parameterType="NoticeDTO">
@@ -53,4 +72,9 @@
   	<delete id="setDelete" parameterType="NoticeDTO">
   		DELETE FROM NOTICE WHERE NOTICENUM=#{noticeNum}
   	</delete>
+  	<insert id="setFileAdd" parameterType="NoticeFileDTO">
+  		INSERT INTO NOTICEFILE(FILENUM,NOTICENUM,FILENAME,ORIGINALNAME)
+  		VALUES (NF_SEQ.NEXTVAL,#{noticeNum},#{fileName},#{originalName})
+  	</insert>
+  	
   </mapper>

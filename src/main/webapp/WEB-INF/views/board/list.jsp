@@ -31,7 +31,7 @@
 					<tr>
 						<td class="text-center" >${d.noticeNum}</td>
 						<td class="text-center" ><a  href="./detail?noticeNum=${d.noticeNum}">${d.noticeTitle}</a></td>
-						<td class="text-center" >${d.noticeName}</td>
+						<td class="text-center" >${d.id}</td>
 						<td class="text-center" >${d.noticeDate}</td>
 						<td class="text-center" >${d.noticeHit}</td>
 

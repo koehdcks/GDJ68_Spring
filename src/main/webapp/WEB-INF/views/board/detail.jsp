@@ -27,7 +27,7 @@
 			<tbody>
 				<tr>
 					<td class="text-center" >${dto.noticeTitle}</td>
-					<td class="text-center" >${dto.noticeName}</td>
+					<td class="text-center" >${dto.id}</td>
 					<td class="text-center" >${dto.noticeDate}</td>
 					<td class="text-center" >${dto.noticeHit}</td>
 				</tr>
@@ -37,7 +37,9 @@
 			</tbody>
 
 		</table>
-		
+			<c:forEach items="${dto.fileDTOs}" var="f">
+			<img alt="" src="/resources/upload/notice/${f.fileName }">
+		</c:forEach>
 		
 		<a href="./update?noticeNum=${dto.noticeNum }" class="btn btn-warning">수정</a> 
 		<a href="./delete?noticeNum=${dto.noticeNum}" class="btn btn-danger">삭제</a>

@@ -13,5 +13,6 @@
 		<typeAlias type="com.iu.main.member.MemberFileDTO" alias="MemberFileDTO"/>
 		<typeAlias type="java.util.List" alias="List"/>
 		<typeAlias type="com.iu.main.bankBook.BankBookFileDTO" alias="BankBookFileDTO"/>
+		<typeAlias type="com.iu.main.notice.NoticeFileDTO" alias="NoticeFileDTO"/>
 	</typeAliases>
 </configuration>

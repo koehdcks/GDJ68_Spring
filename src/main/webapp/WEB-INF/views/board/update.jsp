@@ -19,7 +19,7 @@
 		</div>
 		<div>
 			<label for="formName" class="form-label">작성자</label>
-			<input type="text" name="noticeName" class="form-control" id="formName" value="${dto.noticeName}" readonly="readonly"><br>
+			<input type="text" name="id" class="form-control" id="formName" value="${dto.id}" readonly="readonly"><br>
 		</div>
 		<div>
 			<label for="formName" class="form-label">제목</label>

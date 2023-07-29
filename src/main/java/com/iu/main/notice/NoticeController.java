@@ -2,11 +2,14 @@ package com.iu.main.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.main.util.Pager;
 
@@ -32,8 +35,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "add",method = RequestMethod.POST)
-	public String setAdd(NoticeDTO noticeDTO,Model model) throws Exception{
-		int result = noticeService.setAdd(noticeDTO);
+	public String setAdd(NoticeDTO noticeDTO,Model model,HttpSession session,MultipartFile[] photos) throws Exception{
+		int result = noticeService.setAdd(noticeDTO,photos,session);
 		return "redirect:./list";
 	}
 	
