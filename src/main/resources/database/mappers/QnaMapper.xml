@@ -33,7 +33,7 @@
 
 	
 	<select id="getDetail" resultType="QnaDTO" parameterType="QnaDTO">
-		SELECT * FROM QNA WHERE NUM=#{num}
+		SELECT * FROM QNA A LEFT JOIN QNAFILE WHERE NUM=#{num}
 	</select>
 	
 	<insert id="setAdd" parameterType="QnaDTO">
