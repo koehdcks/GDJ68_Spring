@@ -13,19 +13,19 @@ public class NoticeDAOTest extends Mytest  {
 	@Autowired
 	private NoticeDAO noticeDAO;
 	
-	@Test
-	public void addTest() throws Exception {
-		NoticeDTO noticeDTO = new NoticeDTO();
-		
-		for(int i=0;i<30;i++) {
-			noticeDTO.setNoticeName("adfasa");
-			noticeDTO.setNoticeContents("asdfasdf");
-			noticeDTO.setNoticeTitle("asdfasdf");
-			noticeDAO.setAdd(noticeDTO);
-		}
-		System.out.println("fnish");
-		
-	}
+//	@Test
+//	public void addTest() throws Exception {
+//		NoticeDTO noticeDTO = new NoticeDTO();
+//		
+//		for(int i=0;i<30;i++) {
+//		
+//			noticeDTO.setNoticeContents("asdfasdf");
+//			noticeDTO.setNoticeTitle("asdfasdf");
+//			noticeDAO.setAdd(noticeDTO);
+//		}
+//		System.out.println("fnish");
+//		
+//	}
 
 
 }
