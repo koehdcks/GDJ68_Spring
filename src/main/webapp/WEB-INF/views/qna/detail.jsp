@@ -12,7 +12,7 @@
 	<c:import url="../temp/header.jsp"></c:import>
 	
 	<section class="container mt-5">
-		<h1 class="text-center">Detail</h1>
+		<h1 class="text-center">QnaDetail</h1>
 
 
 		<table class="table mt-3">
@@ -26,23 +26,20 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td class="text-center" >${dto.noticeTitle}</td>
-					<td class="text-center" >${dto.noticeName}</td>
-					<td class="text-center" >${dto.noticeDate}</td>
-					<td class="text-center" >${dto.noticeHit}</td>
+					<td class="text-center" >${dto.qnaTitle}</td>
+					<td class="text-center" >${dto.qnaName}</td>
+					<td class="text-center" >${dto.qnaDate}</td>
+					<td class="text-center" >${dto.qnaHit}</td>
 				</tr>
 				<tr>
-					<td colspan="4">${dto.noticeContents }</td>
+					<td colspan="4">${dto.qnaContents }</td>
 				<tr>
 			</tbody>
 
 		</table>
-			<c:forEach items="${dto.fileDTOs}" var="f">
-			<img alt="" src="/resources/upload/notice/${f.fileName }">
-		</c:forEach>
 		
-		<a href="./update?noticeNum=${dto.noticeNum }" class="btn btn-warning">수정</a> 
-		<a href="./delete?noticeNum=${dto.noticeNum}" class="btn btn-danger">삭제</a>
+		<a href="./update?qnaNum=${dto.qnaNum }" class="btn btn-warning">수정</a> 
+		<a href="./delete?qnaNum=${dto.qnaNum}" class="btn btn-danger">삭제</a>
 		
 	</section>
 	

@@ -4,8 +4,8 @@ import java.sql.Date;
 import java.util.List;
 
 public class NoticeDTO {
-	private Integer noticeNum;
-	private String id;
+	private Long noticeNum;
+	private String noticeName;
 	private String noticeTitle;
 	private String noticeContents;
 	private Date noticeDate;
@@ -25,15 +25,15 @@ public class NoticeDTO {
 		this.fileDTOs = fileDTOs;
 	}
 
-	public String getId() {
-		return id;
+	public String getNoticeName() {
+		return noticeName;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setNoticeName(String noticeName) {
+		this.noticeName = noticeName;
 	}
 
-	public Integer getNoticeNum() {
+	public Long getNoticeNum() {
 		return noticeNum;
 	}
 	
@@ -49,7 +49,7 @@ public class NoticeDTO {
 	public Integer getNoticeHit() {
 		return noticeHit;
 	}
-	public void setNoticeNum(Integer noticeNum) {
+	public void setNoticeNum(Long noticeNum) {
 		this.noticeNum = noticeNum;
 	}
 	

@@ -18,7 +18,7 @@
 		<form action="./add" method="post" enctype="multipart/form-data">
 			<div>
 				<label for="formId" class="form-label">작성자</label> <input
-					type="text" name="id" class="form-control" id="formId"
+					type="text" name="noticeName" class="form-control" id="formId"
 					value="${member.id }" readonly="readonly"><br>
 			</div>
 			<div>

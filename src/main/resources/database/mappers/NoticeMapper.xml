@@ -23,7 +23,7 @@
 	</select>
 
   	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
-  		SELECT NOTICENUM,ID,NOTICETITLE,NOTICEDATE,NOTICEHIT FROM 
+  		SELECT NOTICENUM,NOTICENAME,NOTICETITLE,NOTICEDATE,NOTICEHIT FROM 
   				(SELECT ROWNUM R, B.* FROM
   					(SELECT *
   					FROM NOTICE
@@ -42,7 +42,7 @@
   	</select>
   	<resultMap type="NoticeDTO" id="getDetailResult">
   		<id column="NOTICENUM" property="noticeNum"/>
-  		<result column="ID" property="id"/>
+  		<result column="NOTICENAME" property="noticeName"/>
   		<result column="NOTICETITLE" property="noticeTitle"/>
   		<result column="NOTICECONTENTS" property="noticeContents"/>
   		<result column="NOTICEDATE" property="noticeDate"/>
@@ -56,10 +56,10 @@
   	</resultMap>
   	
   	<insert id="setAdd" parameterType="NoticeDTO">
-  	<selectKey keyProperty="noticeNum" resultType="java.lang.Integer" order="BEFORE">
+  	<selectKey keyProperty="noticeNum" resultType="Long" order="BEFORE">
   			SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
-  		INSERT INTO NOTICE VALUES(#{noticeNum},#{id},#{noticeTitle},#{noticeContents},SYSDATE,0)
+  		INSERT INTO NOTICE VALUES(#{noticeNum},#{noticeName},#{noticeTitle},#{noticeContents},SYSDATE,0)
   	</insert>
   	
   	<update id="setUpdate" parameterType="NoticeDTO">

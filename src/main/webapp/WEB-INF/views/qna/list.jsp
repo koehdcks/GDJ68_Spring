@@ -12,7 +12,7 @@
 	<c:import url="../temp/header.jsp"></c:import>
 	
 	<section class="container mt-5">
-		<h1 class="text-center">List</h1>
+			<h1 class="text-center">QNA</h1>
 
 
 		<table class="table mt-3">
@@ -29,11 +29,11 @@
 				<c:forEach items="${list}" var="d" varStatus="i">
 					<!--list를 items에 넣고 하나씩 d에 대입하며 출력반복-->
 					<tr>
-						<td class="text-center" >${d.noticeNum}</td>
-						<td class="text-center" ><a  href="./detail?noticeNum=${d.noticeNum}">${d.noticeTitle}</a></td>
-						<td class="text-center" >${d.noticeName}</td>
-						<td class="text-center" >${d.noticeDate}</td>
-						<td class="text-center" >${d.noticeHit}</td>
+						<td class="text-center" >${d.qnaNum}</td>
+						<td class="text-center" ><a  href="./detail?qnaNum=${d.qnaNum}">${d.qnaTitle}</a></td>
+						<td class="text-center" >${d.qnaName}</td>
+						<td class="text-center" >${d.qnaDate}</td>
+						<td class="text-center" >${d.qnaHit}</td>
 
 					</tr>
 				</c:forEach>
@@ -71,6 +71,7 @@
 		</div>
 			
 		<a class="btn btn-success" href="./add">글등록</a>
+	
 	</section>
 	
 </body>
