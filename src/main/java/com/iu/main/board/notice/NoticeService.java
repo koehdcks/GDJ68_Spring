@@ -1,4 +1,4 @@
-package com.iu.main.notice;
+package com.iu.main.board.notice;
 
 
 import java.util.List;
@@ -9,18 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iu.main.board.BoardDTO;
+import com.iu.main.board.BoardService;
 import com.iu.main.util.FileManager;
 import com.iu.main.util.Pager;
 
 @Service
-public class NoticeService {
+public class NoticeService implements BoardService {
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
 	@Autowired
 	private FileManager fileManager;
 	
-	public List<NoticeDTO> getList(Pager pager) throws Exception{
+	public List<BoardDTO> getList(Pager pager) throws Exception{
 		pager.makeRowNum();
 		Long total = noticeDAO.getTotal(pager);
 		pager.makePageNum(total);
@@ -28,8 +30,8 @@ public class NoticeService {
 		return noticeDAO.getList(pager);
 	}
 	
-	public int setAdd(NoticeDTO noticeDTO,MultipartFile[] files,HttpSession session) throws Exception{
-		int result = noticeDAO.setAdd(noticeDTO);
+	public int setAdd(BoardDTO boardDTO,MultipartFile[] files,HttpSession session) throws Exception{
+		int result = noticeDAO.setAdd(boardDTO);
 		
 		if(files.length!=0) {
 			for(int i=0;i<files.length;i++) {
@@ -37,7 +39,7 @@ public class NoticeService {
 				NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
 				noticeFileDTO.setOriginalName(files[i].getOriginalFilename());
 				noticeFileDTO.setFileName(fileName);
-				noticeFileDTO.setNoticeNum(noticeDTO.getNoticeNum());
+				noticeFileDTO.setNoticeNum(boardDTO.getNum());
 				result = noticeDAO.setFileAdd(noticeFileDTO);
 			}
 		}
@@ -45,15 +47,15 @@ public class NoticeService {
 		return result;
 	}
 	
-	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception{
-		return noticeDAO.getDetail(noticeDTO);
+	public NoticeDTO getDetail(BoardDTO boardDTO) throws Exception{
+		return noticeDAO.getDetail(boardDTO);
 	}
 	
-	public int setUpdate(NoticeDTO noticeDTO) throws Exception{
-		return noticeDAO.setUpdate(noticeDTO);
+	public int setUpdate(BoardDTO boardDTO) throws Exception{
+		return noticeDAO.setUpdate(boardDTO);
 	}
 	
-	public int setDelete(NoticeDTO noticeDTO) throws Exception{
-		return noticeDAO.setDelete(noticeDTO);
+	public int setDelete(BoardDTO boardDTO) throws Exception{
+		return noticeDAO.setDelete(boardDTO);
 	}
 }

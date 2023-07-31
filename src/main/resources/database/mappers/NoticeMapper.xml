@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.iu.main.notice.NoticeDAO">
+  <mapper namespace="com.iu.main.board.notice.NoticeDAO">
 	<sql id="searchSql">
 		WHERE NOTICENUM>0 
   		<if test="kind=='title'">
@@ -22,7 +22,7 @@
 		<include refid="searchSql"/>
 	</select>
 
-  	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
+  	<select id="getList" resultMap="getSelectResult" parameterType="Pager">
   		SELECT NOTICENUM,NOTICENAME,NOTICETITLE,NOTICEDATE,NOTICEHIT FROM 
   				(SELECT ROWNUM R, B.* FROM
   					(SELECT *
@@ -35,18 +35,20 @@
   				
   	</select>
  
-  	<select id="getDetail" resultMap="getDetailResult" parameterType="NoticeDTO">
+ 
+  	<select id="getDetail" resultMap="getSelectResult" parameterType="NoticeDTO">
   		SELECT A.*,B.* FROM NOTICE A LEFT JOIN NOTICEFILE B 
 		ON A.NOTICENUM=B.NOTICENUM 
-		WHERE A.NOTICENUM=#{noticeNum}
+		WHERE A.NOTICENUM=#{num}
   	</select>
-  	<resultMap type="NoticeDTO" id="getDetailResult">
-  		<id column="NOTICENUM" property="noticeNum"/>
-  		<result column="NOTICENAME" property="noticeName"/>
-  		<result column="NOTICETITLE" property="noticeTitle"/>
-  		<result column="NOTICECONTENTS" property="noticeContents"/>
-  		<result column="NOTICEDATE" property="noticeDate"/>
-  		<result column="NOTICEDHIT" property="noticeHit"/>
+  	
+  	<resultMap type="NoticeDTO" id="getSelectResult">
+  		<id column="NOTICENUM" property="num"/>
+  		<result column="NOTICENAME" property="name"/>
+  		<result column="NOTICETITLE" property="subject"/>
+  		<result column="NOTICECONTENTS" property="contents"/>
+  		<result column="NOTICEDATE" property="createDate"/>
+  		<result column="NOTICEDHIT" property="hit"/>
   		
   		<collection property="fileDTOs" javaType="List" ofType="NoticeFileDTO">
   		<id column="FILENUM" property="fileNum"/>
@@ -56,21 +58,21 @@
   	</resultMap>
   	
   	<insert id="setAdd" parameterType="NoticeDTO">
-  	<selectKey keyProperty="noticeNum" resultType="Long" order="BEFORE">
+  		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
   			SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
-  		INSERT INTO NOTICE VALUES(#{noticeNum},#{noticeName},#{noticeTitle},#{noticeContents},SYSDATE,0)
+  		INSERT INTO NOTICE VALUES(#{num},#{name},#{subject},#{contents},SYSDATE,0)
   	</insert>
   	
   	<update id="setUpdate" parameterType="NoticeDTO">
   		UPDATE NOTICE SET 
-  		NOTICETITLE=#{noticeTitle},
-  		NOTICECONTENTS=#{noticeContents} 
-  		WHERE NOTICENUM=#{noticeNum}
+  		NOTICETITLE=#{subject},
+  		NOTICECONTENTS=#{contents} 
+  		WHERE NOTICENUM=#{num}
   	</update>
   	
   	<delete id="setDelete" parameterType="NoticeDTO">
-  		DELETE FROM NOTICE WHERE NOTICENUM=#{noticeNum}
+  		DELETE FROM NOTICE WHERE NOTICENUM=#{num}
   	</delete>
   	<insert id="setFileAdd" parameterType="NoticeFileDTO">
   		INSERT INTO NOTICEFILE(FILENUM,NOTICENUM,FILENAME,ORIGINALNAME)

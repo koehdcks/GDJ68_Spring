@@ -18,16 +18,16 @@
 		<form action="./add" method="post" enctype="multipart/form-data">
 			<div>
 				<label for="formId" class="form-label">작성자</label> <input
-					type="text" name="noticeName" class="form-control" id="formId"
+					type="text" name="name" class="form-control" id="formId"
 					value="${member.id }" readonly="readonly"><br>
 			</div>
 			<div>
 				<label for="formTitle" class="form-label">제목</label> <input
-					type="text" name="noticeTitle" id="formTitle" class="form-control"><br>
+					type="text" name="subject" id="formTitle" class="form-control"><br>
 			</div>
 			<div class="mb-3">
 				<label for="formContents" class="form-label">글내용</label>
-				<textarea rows="" cols="" name="noticeContents" class="form-control"
+				<textarea rows="" cols="" name="contents" class="form-control"
 					id="formContents"></textarea>
 			</div>
 			<!-- <select name="bookSale">     2번째방법

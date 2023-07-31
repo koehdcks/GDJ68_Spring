@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.iu.main.Mytest;
+import com.iu.main.board.notice.NoticeDAO;
 
 public class NoticeDAOTest extends Mytest  {
 	@Autowired

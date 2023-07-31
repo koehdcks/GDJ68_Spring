@@ -15,19 +15,19 @@
 
 		<form action="./update" method="post">
 		<div>
-			<input type="hidden" name="noticeNum" value="${dto.noticeNum}">
+			<input type="hidden" name="num" value="${dto.num}">
 		</div>
 		<div>
 			<label for="formName" class="form-label">작성자</label>
-			<input type="text" name="noticeName" class="form-control" id="formName" value="${dto.noticeName}" readonly="readonly"><br>
+			<input type="text" name="name" class="form-control" id="formName" value="${dto.name}" readonly="readonly"><br>
 		</div>
 		<div>
 			<label for="formName" class="form-label">제목</label>
-			<input type="text" name="noticeTitle" class="form-control" id="formName" value="${dto.noticeTitle}" ><br>
+			<input type="text" name="subject" class="form-control" id="formName" value="${dto.subject}" ><br>
 		</div>
 		<div>
 		<label for="formContents" class="form-label">내용</label>
-			<textarea class="form-control mb-5" rows="" cols="" name="noticeContents" id="formContents">${dto.noticeContents}</textarea>
+			<textarea class="form-control mb-5" rows="" cols="" name="contents" id="formContents">${dto.contents}</textarea>
 		</div>
 
 			<input type="submit" value="수정">

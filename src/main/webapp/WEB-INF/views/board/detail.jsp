@@ -26,13 +26,13 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td class="text-center" >${dto.noticeTitle}</td>
-					<td class="text-center" >${dto.noticeName}</td>
-					<td class="text-center" >${dto.noticeDate}</td>
-					<td class="text-center" >${dto.noticeHit}</td>
+					<td class="text-center" >${dto.subject}</td>
+					<td class="text-center" >${dto.name}</td>
+					<td class="text-center" >${dto.createDate}</td>
+					<td class="text-center" >${dto.hit}</td>
 				</tr>
 				<tr>
-					<td colspan="4">${dto.noticeContents }</td>
+					<td colspan="4">${dto.contents }</td>
 				<tr>
 			</tbody>
 
@@ -41,8 +41,8 @@
 			<img alt="" src="/resources/upload/notice/${f.fileName }">
 		</c:forEach>
 		
-		<a href="./update?noticeNum=${dto.noticeNum }" class="btn btn-warning">수정</a> 
-		<a href="./delete?noticeNum=${dto.noticeNum}" class="btn btn-danger">삭제</a>
+		<a href="./update?num=${dto.num }" class="btn btn-warning">수정</a> 
+		<a href="./delete?num=${dto.num}" class="btn btn-danger">삭제</a>
 		
 	</section>
 	
