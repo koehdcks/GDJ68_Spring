@@ -64,5 +64,17 @@ public class QnaController {
 		int result = qnaService.setDelete(qnaDTO);
 		return "redirect:./list";
 	}
+	@RequestMapping(value="update",method = RequestMethod.GET)
+	public String setUpdate(QnaDTO qnaDTO,Model model) throws Exception{
+		BoardDTO boardDTO = qnaService.getDetail(qnaDTO);
+		model.addAttribute("dto", boardDTO);
+		return "board/update";
+	}
+	@RequestMapping(value="update",method = RequestMethod.POST)
+	public String setUpdate(QnaDTO qnaDTO) throws Exception{
+		 int result = qnaService.setUpdate(qnaDTO);
+		
+		return "redirect:./detail?num="+qnaDTO.getNum();
+	}
 
 }

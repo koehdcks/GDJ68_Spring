@@ -90,5 +90,8 @@
   	<delete id="setDelete" parameterType="QnaDTO">
   		DELETE FROM QNA <include refid="deleteSql"/>
   	</delete>
+  	<update id="setUpdate" parameterType="QnaDTO">
+  		UPDATE QNA SET SUBJECT=#{subject},CONTENTS=#{contents} WHERE NUM=#{num}
+  	</update>
   	
 </mapper>
