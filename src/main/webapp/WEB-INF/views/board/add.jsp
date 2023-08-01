@@ -13,7 +13,7 @@
 	<c:import url="../temp/header.jsp"></c:import>
 
 	<section class="container mt-5">
-		<h1>Add PAGE</h1>
+		<h1>${board} Add PAGE</h1>
 
 		<form action="./add" method="post" enctype="multipart/form-data">
 			<div>

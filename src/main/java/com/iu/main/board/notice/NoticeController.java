@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,12 @@ public class NoticeController {
 
 	@Autowired
 	private NoticeService noticeService;
+	
+	@ModelAttribute("board")
+	public String getBoardName() throws Exception {
+		return "notice";
+	}
+	
 	
 	@RequestMapping(value = "list",method = RequestMethod.GET)
 	public String getList(Pager pager,String kind,Model model) throws Exception{
@@ -36,7 +43,7 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "add",method = RequestMethod.POST)
-	public String setAdd(NoticeDTO noticeDTO,Model model,HttpSession session,MultipartFile[] photos) throws Exception{
+	public String setAdd(NoticeDTO noticeDTO,HttpSession session,MultipartFile[] photos) throws Exception{
 		int result = noticeService.setAdd(noticeDTO,photos,session);
 		return "redirect:./list";
 	}
@@ -66,5 +73,10 @@ public class NoticeController {
 		int result = noticeService.setDelete(noticeDTO);
 		return "redirect:./list";
 	}
-	
+	@RequestMapping(value = "reply",method = RequestMethod.GET)
+	public String setReply(NoticeDTO noticeDTO,Model model) throws Exception{
+		BoardDTO boardDTO = noticeService.getDetail(noticeDTO);
+		model.addAttribute("dto", boardDTO);
+		return "board/reply";
+	}
 }

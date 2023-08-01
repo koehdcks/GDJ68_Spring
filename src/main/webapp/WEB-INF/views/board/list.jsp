@@ -12,14 +12,14 @@
 	<c:import url="../temp/header.jsp"></c:import>
 	
 	<section class="container mt-5">
-		<h1 class="text-center">List</h1>
+		<h1 class="text-center">${board} List</h1>
 
 
 		<table class="table mt-3">
 			<thead class="table-dark">
 				<tr>
 					<th class="text-center">NO</th>
-					<th class="text-center" style="width:70%">SUBJECT</th>
+					<th>SUBJECT</th>
 					<th class="text-center">NAME</th>
 					<th class="text-center">DATE</th>
 					<th class="text-center">HIT</th>
@@ -30,7 +30,7 @@
 					<!--list를 items에 넣고 하나씩 d에 대입하며 출력반복-->
 					<tr>
 						<td class="text-center" >${d.num}</td>
-						<td class="text-center" ><a  href="./detail?num=${d.num}">${d.subject}</a></td>
+						<td><a  href="./detail?num=${d.num}">${d.subject}</a></td>
 						<td class="text-center" >${d.name}</td>
 						<td class="text-center" >${d.createDate}</td>
 						<td class="text-center" >${d.hit}</td>

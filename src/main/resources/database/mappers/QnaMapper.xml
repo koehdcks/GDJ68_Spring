@@ -26,20 +26,56 @@
 		FROM	(SELECT ROWNUM R, B.*
 				 FROM (SELECT * FROM QNA
 				 			<include refid="searchSql"/>
-				 			ORDER BY NUM DESC)B
+				 			ORDER BY REF DESC, STEP ASC) B
 				 ) 
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>		
 
 	
-	<select id="getDetail" resultType="QnaDTO" parameterType="QnaDTO">
-		SELECT * FROM QNA A LEFT JOIN QNAFILE WHERE NUM=#{num}
-	</select>
+	<select id="getDetail" resultMap="getSelectResult" parameterType="QnaDTO">
+  		SELECT A.*,B.* FROM QNA A LEFT JOIN QNAFILE B 
+		ON A.NUM=B.NUM 
+		WHERE A.NUM=#{num}
+  	</select>
+  	
+  	<resultMap type="QnaDTO" id="getSelectResult">
+  		<id column="NUM" property="num"/>
+  		<result column="NAME" property="name"/>
+  		<result column="SUBJECT" property="subject"/>
+  		<result column="CONTENTS" property="contents"/>
+  		<result column="CREATEDATE" property="createDate"/>
+  		<result column="HIT" property="hit"/>
+  		<result column="REF" property="ref"/>
+  		<result column="STEP" property="step"/>
+  		<result column="DEPTH" property="depth"/>
+  		
+  		<collection property="fileDTOs" javaType="List" ofType="QnaFileDTO">
+  		<id column="FILENUM" property="fileNum"/>
+  		<result column="FILENAME" property="fileName"/>
+  		<result column="ORIGINALNAME" property="originalName"/>
+  		</collection>
+  	</resultMap>
 	
 	<insert id="setAdd" parameterType="QnaDTO">
 		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
 			SELECT QNA_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
-			INSERT INTO QNA VALUES(#{num},#{name},#{subject},#{contents},SYSDATE,0,0,0,0)
+			INSERT INTO QNA VALUES(#{num},#{name},#{subject},#{contents},SYSDATE,0,#{num},0,0)
 	</insert>
+	
+	<insert id="setFileAdd" parameterType="QnaFileDTO">
+  		INSERT INTO QNAFILE(FILENUM,NUM,FILENAME,ORIGINALNAME)
+  		VALUES (NF_SEQ.NEXTVAL,#{num},#{fileName},#{originalName})
+  	</insert>
+  	
+  	<insert id="setReplyAdd" parameterType="QnaDTO">
+  		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
+			SELECT QNA_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+  		INSERT INTO QNA (NUM,NAME,SUBJECT,CONTENTS,CREATEDATE,HIT,REF,STEP,DEPTH) VALUES(#{num},#{name},#{subject},#{contents},SYSDATE,0,#{ref},#{step},#{depth})
+  	</insert>
+  	
+  	<update id="setStepUpdate" parameterType="QnaDTO">
+  		UPDATE QNA SET STEP=STEP+1 WHERE REF=#{ref} AND STEP>#{step} 
+  	</update>
 </mapper>

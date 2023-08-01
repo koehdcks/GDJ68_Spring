@@ -57,7 +57,16 @@ public class QnaDAO implements BoardDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	public int setFileAdd(QnaFileDTO qnaFileDTO) throws Exception{
+		return session.insert(NAMESPACE+"setFileAdd", qnaFileDTO);
+	}
 	
-
+	public int setReplyAdd(QnaDTO qnaDTO) throws Exception{
+		return session.insert(NAMESPACE+"setReplyAdd",qnaDTO);
+	}
+	
+	public int setStepUpdate(QnaDTO qnaDTO) throws Exception{
+		return session.update(NAMESPACE+"setStepUpdate", qnaDTO);
+	}
 	
 }

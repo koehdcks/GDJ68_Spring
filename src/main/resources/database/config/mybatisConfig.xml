@@ -15,5 +15,6 @@
 		<typeAlias type="com.iu.main.bankBook.BankBookFileDTO" alias="BankBookFileDTO"/>
 		<typeAlias type="com.iu.main.board.notice.NoticeFileDTO" alias="NoticeFileDTO"/>
 		<typeAlias type="com.iu.main.board.qna.QnaDTO" alias="QnaDTO"/>
+		<typeAlias type="com.iu.main.board.qna.QnaFileDTO" alias="QnaFileDTO"/>
 	</typeAliases>
 </configuration>

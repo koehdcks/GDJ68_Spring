@@ -6,14 +6,14 @@
   <mapper namespace="com.iu.main.board.notice.NoticeDAO">
 	<sql id="searchSql">
 		WHERE NOTICENUM>0 
-  		<if test="kind=='title'">
+  		<if test="kind=='subject'">
   			AND NOTICETITLE LIKE '%'||#{search}||'%'
   		</if>
   		<if test="kind=='contents'">
   			AND NOTICECONTENTS LIKE '%'||#{search}||'%'
   		</if>
   		<if test="kind=='name'">
-  			AND ID LIKE '%'||#{search}||'%'
+  			AND NOTICENAME LIKE '%'||#{search}||'%'
   		</if>
 	</sql>
 	
