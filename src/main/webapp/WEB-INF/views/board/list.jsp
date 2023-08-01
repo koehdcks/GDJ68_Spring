@@ -30,7 +30,7 @@
 					<!--list를 items에 넣고 하나씩 d에 대입하며 출력반복-->
 					<tr>
 						<td class="text-center" >${d.num}</td>
-						<td><a  href="./detail?num=${d.num}">${d.subject}</a></td>
+						<td><a  href="./detail?num=${d.num}"><c:catch><c:forEach begin="1" end="${d.depth}">--</c:forEach></c:catch>${d.subject}</a></td>
 						<td class="text-center" >${d.name}</td>
 						<td class="text-center" >${d.createDate}</td>
 						<td class="text-center" >${d.hit}</td>

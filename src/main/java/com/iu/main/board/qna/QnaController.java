@@ -59,6 +59,10 @@ public class QnaController {
 		int result = qnaService.setReplyAdd(qnaDTO, photos, session);
 		return "redirect:./list";
 	}
-	
-	
+	@RequestMapping(value = "delete",method = RequestMethod.GET)
+	public String setDelete(QnaDTO qnaDTO) throws Exception{
+		int result = qnaService.setDelete(qnaDTO);
+		return "redirect:./list";
+	}
+
 }
