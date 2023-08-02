@@ -45,7 +45,7 @@
 		</c:if>
 		<a href="./update?num=${dto.num}" class="btn btn-warning">수정</a> 
 		<c:if test="${board=='qna'}">
-		<a href="./delete?step=${dto.step}&num=${dto.num}&ref=${dto.ref}" class="btn btn-danger">삭제</a>
+		<a href="./delete?num=${dto.num}" class="btn btn-danger">삭제</a>
 		</c:if>
 		<c:if test="${board=='notice'}">
 		<a href="./delete?num=${dto.num}" class="btn btn-danger">삭제</a>

@@ -17,14 +17,6 @@
   		</if>
 	</sql>
 	
-	<sql id="deleteSql">
-		<if test="step==0">
-			WHERE REF=#{ref}
-		</if>
-		<if test="step!=0">
-			WHERE NUM=#{num}
-		</if>
-	</sql>
 	
 	<select id="getTotal" resultType="Long" parameterType="Pager">
 		SELECT COUNT(NUM) FROM QNA
@@ -87,9 +79,11 @@
   	<update id="setStepUpdate" parameterType="QnaDTO">
   		UPDATE QNA SET STEP=STEP+1 WHERE REF=#{ref} AND STEP>#{step} 
   	</update>
+  	
   	<delete id="setDelete" parameterType="QnaDTO">
-  		DELETE FROM QNA <include refid="deleteSql"/>
+  		DELETE FROM QNA WHERE NUM=#{num}
   	</delete>
+  	
   	<update id="setUpdate" parameterType="QnaDTO">
   		UPDATE QNA SET SUBJECT=#{subject},CONTENTS=#{contents} WHERE NUM=#{num}
   	</update>
