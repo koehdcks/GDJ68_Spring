@@ -40,16 +40,18 @@
 		<c:forEach items="${dto.fileDTOs}" var="f">
 			<img alt="" src="/resources/upload/${board}/${f.fileName }">
 		</c:forEach>
+		
 		<c:if test="${board ne 'notice'}">
 			<a href="./reply?num=${dto.num}" class="btn btn-info">댓글</a>
 		</c:if>
 		<a href="./update?num=${dto.num}" class="btn btn-warning">수정</a> 
-		<c:if test="${board=='qna'}">
-		<a href="./delete?num=${dto.num}" class="btn btn-danger">삭제</a>
-		</c:if>
-		<c:if test="${board=='notice'}">
-		<a href="./delete?num=${dto.num}" class="btn btn-danger">삭제</a>
-		</c:if>
+	
+		
+		<button type="button" id="del" class="btn btn-danger" data-delete-name="num" data-delete-num="${dto.num}">삭제</button>
+		<script src="../resources/js/delete.js"></script>
+	
+		
+
 	</section>
 	
 </body>

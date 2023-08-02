@@ -34,13 +34,18 @@
 		</c:forEach>
 		
 		<a href="./update?bookNum=${dto.bookNum}" class="btn btn-warning">수정</a> 
-		<a href="./delete?bookNum=${dto.bookNum}" class="btn btn-danger">삭제</a>
+		<button id="update">수정</button>
+		<button id="del" class="btn btn-danger" data-delete-name="bookNum" data-delete-num="${dto.bookNum}">삭제</button>
 		<%-- <c:if test="${dto.bookSale==1}">
 		<h1>판매중</h1>
 	</c:if>
 	<c:if test="${dto.bookSale==0}">
 		<h1>판매종료</h1>
 	</c:if> --%>
+	<script src="../resources/js/delete.js"></script>
+	<!-- <script>
+		setBookNum(${dto.bookNum});
+	</script> -->
 	</section>
 </body>
 </html>
