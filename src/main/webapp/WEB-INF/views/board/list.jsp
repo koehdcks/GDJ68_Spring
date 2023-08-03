@@ -44,26 +44,27 @@
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
 			
-				<li class="page-item ${pager.pre?'':'disabled'}"><a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+				<li class="page-item ${pager.pre?'':'disabled'}"><a class="page-link move" href="#" data-num="${pager.startNum-1}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
 
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-				<li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+				<li class="page-item"><a class="page-link move" href="#" data-num="${i}">${i}</a></li>
 				</c:forEach>
 		
-				<li class="page-item ${pager.next?'':'disabled'}" ><a class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}"aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+				<li class="page-item ${pager.next?'':'disabled'}" ><a class="page-link move" href="#" data-num="${pager.lastNum+1}" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
 	
 			</ul>
 		</nav>
 		
 		<div class="input-group mb-3">
-			<form action="./list" method="get">
-				<select class="form-select"  name="kind" aria-label="Default select example">
-					<option value="subject">Subject</option>
-					<option value="contents">Contents</option>
-					<option value="name">Name</option>
+			<form action="./list" method="get" id="frm">
+				<input type="hidden" value="${pager.page}" id="page" name="page">
+				<select class="form-select" id="k" name="kind" data-kind="${pager.kind}" aria-label="Default select example">
+					<option value="subject" class="kind">Subject</option>
+					<option value="contents" class="kind">Contents</option>
+					<option value="name" class="kind">Name</option>
 				</select> 
 				<input type="text" name="search" class="form-control"
-					aria-label="Amount (to the nearest dollar)">
+					aria-label="Amount (to the nearest dollar)" value="${pager.search}">
 				<div class="col-auto">
     				<button type="submit" class="btn btn-primary">검색</button>
   				</div>
@@ -72,6 +73,7 @@
 			
 		<a class="btn btn-success" href="./add">글등록</a>
 	</section>
-	
+	<script src="/resources/js/list.js"></script>
+	<!-- <script>setData('${pager.kind}')</script> -->
 </body>
 </html>

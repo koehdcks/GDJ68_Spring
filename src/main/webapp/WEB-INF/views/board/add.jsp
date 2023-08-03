@@ -15,15 +15,15 @@
 	<section class="container mt-5">
 		<h1>${board} Add PAGE</h1>
 
-		<form action="./add" method="post" enctype="multipart/form-data">
+		<form action="./add" method="post" id="frm" enctype="multipart/form-data">
 			<div>
 				<label for="formId" class="form-label">작성자</label> <input
 					type="text" name="name" class="form-control" id="formId"
 					value="${member.id }" readonly="readonly"><br>
 			</div>
 			<div>
-				<label for="formTitle" class="form-label">제목</label> <input
-					type="text" name="subject" id="formTitle" class="form-control"><br>
+				<label for="subject" class="form-label">제목</label> <input
+					type="text" name="subject" id="subject" class="form-control"><br>
 			</div>
 			<div class="mb-3">
 				<label for="formContents" class="form-label">글내용</label>
@@ -55,12 +55,26 @@
 					type="file" name="photos" id="formPic">
 			</div>
 			
-			<button class="btn btn-success">등록</button>
+			<button class="btn btn-success" type="button" id="btn">등록</button>
 			<!-- 버튼 타입을 생략하면 서브밋타입 -->
 			<input type="reset" class="btn btn-danger">
 
 		</form>
 	</section>
+	<script>
+		const btn = document.getElementById("btn");
+		const subject = document.getElementById("subject");
+		const frm = document.getElementById("frm");
+
+		btn.addEventListener("click",function(){
+			if(subject.value==''){
+				alert("제목을 입력해주세요");
+				subject.focus();
+			}else{
+				frm.submit();
+			}
+		});
+	</script>
 
 </body>
 </html>

@@ -41,15 +41,17 @@
 			<img alt="" src="/resources/upload/${board}/${f.fileName }">
 		</c:forEach>
 		
+		<form id="frm" action="">
+			<input type="hidden" name="num" value="${dto.num}">
+		</form>
 		<c:if test="${board ne 'notice'}">
-			<a href="./reply?num=${dto.num}" class="btn btn-info">댓글</a>
+			<!-- <a href="./reply?num=${dto.num}" class="btn btn-info">댓글</a> -->
+		<button  id="reply" class="c1 btn btn-info" data-url="reply">답글</button>
 		</c:if>
-		<a href="./update?num=${dto.num}" class="btn btn-warning">수정</a> 
-	
-		
-		<button type="button" id="del" class="btn btn-danger" data-delete-name="num" data-delete-num="${dto.num}">삭제</button>
+		<!-- <a href="./update?num=${dto.num}" class="btn btn-warning">수정</a>  -->
+		<button  id="update" class="c1 btn btn-warning" data-url="update">수정</button>
+		<button type="button" id="del" class="c1 btn btn-danger" data-url="delete" data-delete-name="num" data-delete-num="${dto.num}">삭제</button>
 		<script src="../resources/js/delete.js"></script>
-	
 		
 
 	</section>
