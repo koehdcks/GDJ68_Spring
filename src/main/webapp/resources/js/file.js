@@ -6,14 +6,31 @@
 
 const addFile=document.getElementById("addFile");
 const fileList=document.getElementById("fileList");
+
+
 let count=0;
+let idx=0;
+
+fileList.addEventListener("click",function(event){
+    let cl = event.target.classList;
+    if(event.target.classList.contains("df")){
+        let deleteId=event.target.getAttribute("data-id");
+        document.getElementById(deleteId).remove();
+        count--;
+    }
+});
+
+
 addFile.addEventListener("click",function(){
-    if(count!=5){
+    if(count<5){
         //div
         let dv = document.createElement("div");//<div></div>
         let atb=document.createAttribute("class");//class=
         atb.value="input-group mb-3";//class="input-group mb-3"
         dv.setAttributeNode(atb);//<div class="input-group mb-3"></div>
+        atb = document.createAttribute("id");
+        atb.value="file"+idx;
+        dv.setAttributeNode(atb);
         //label
         let element = document.createElement("label");//<label></label>
         atb = document.createAttribute("for");//for=
@@ -44,7 +61,22 @@ addFile.addEventListener("click",function(){
         //  <label for="formPic" class="form-label">사진첨부</label>
         //  <input type="file" name="photos" id="formPic">
         //</div>
+        let s = document.createElement("span");
+        let t = document.createTextNode("X");
+        s.appendChild(t);
+        atb= document.createAttribute("class");
+        atb.value="df";
+        s.setAttributeNode(atb);
+        atb=document.createAttribute("data-id");
+        atb.value="file"+idx;
+        s.setAttributeNode(atb);
+        dv.appendChild(s);
         fileList.appendChild(dv);
         count++;
+        idx++;
+    }else{
+        alert("파일은 5개가 최대");
     }
+    
 });
+

@@ -34,10 +34,11 @@
 				<option value="1" selected>판매가능</option>     
 				<option value="0">판매중지</option>
 			</select> -->
-			<div id="fileList" class="mb-5"></div>
 			<div class="mb-3">
 				<button type="button" id="addFile">File추가</button>
 			</div>
+			<div id="fileList" class="mb-5"></div>
+			
 
 			
 			<button class="btn btn-success" type="button" id="btn">등록</button>
