@@ -21,7 +21,7 @@
 	<section class="container mt-5">
 		<h1>회원가입</h1>
 
-		<form action="./join" method="post" enctype="multipart/form-data">
+		<form action="./join" method="post" enctype="multipart/form-data" id="frm">
 		<div>
 			<label for="id" class="form-label">아이디</label>
 			<input type="text" name="id" class="form-control input" id="id">
@@ -50,6 +50,7 @@
 		<div class="mb-5">
 			<label for="birth" class="form-label input" data-name="생년월일">생년월일</label>
 			<input type="date" name="birth" id="birth">
+			<div id="birthIn"></div>
 		</div>
 		
 		<div class="mb-5">

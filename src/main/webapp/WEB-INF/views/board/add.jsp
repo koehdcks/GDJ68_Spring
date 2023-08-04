@@ -34,26 +34,11 @@
 				<option value="1" selected>판매가능</option>     
 				<option value="0">판매중지</option>
 			</select> -->
-			<div class="mb-5">
-				<label for="formPic" class="form-label">사진첨부</label> <input
-					type="file" name="photos" id="formPic">
+			<div id="fileList" class="mb-5"></div>
+			<div class="mb-3">
+				<button type="button" id="addFile">File추가</button>
 			</div>
-			<div class="mb-5">
-				<label for="formPic" class="form-label">사진첨부</label> <input
-					type="file" name="photos" id="formPic">
-			</div>
-			<div class="mb-5">
-				<label for="formPic" class="form-label">사진첨부</label> <input
-					type="file" name="photos" id="formPic">
-			</div>
-			<div class="mb-5">
-				<label for="formPic" class="form-label">사진첨부</label> <input
-					type="file" name="photos" id="formPic">
-			</div>
-			<div class="mb-5">
-				<label for="formPic" class="form-label">사진첨부</label> <input
-					type="file" name="photos" id="formPic">
-			</div>
+
 			
 			<button class="btn btn-success" type="button" id="btn">등록</button>
 			<!-- 버튼 타입을 생략하면 서브밋타입 -->
@@ -61,6 +46,7 @@
 
 		</form>
 	</section>
+	<script src="../resources/js/file.js"></script>
 	<script>
 		const btn = document.getElementById("btn");
 		const subject = document.getElementById("subject");
