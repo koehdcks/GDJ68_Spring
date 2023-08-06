@@ -7,4 +7,22 @@
 	<select id="getList" resultType="BookACCountDTO" parameterType="BookACCountDTO">
 		SELECT * FROM BOOKACCOUNT WHERE ID=${id}
 	</select>
+	
+	<select id="getDetail" resultType="BookACCountDTO" parameterType="BookACCountDTO">
+		SELECT * FROM BOOKACCOUNT WHERE ACCOUNTNUM=#{ACCOUNTNUM}
+	</select>
+	
+	<insert id="setAdd" parameterType="BookACCountDTO">
+		INSERT INTO BOOKACCOUNT(ACCOUNTNUM,ID,BOOKNUM,ACCOUNT,ACCOUNTPASSWORD,ACCOUNTBALANCE,ACCOUNTDATE)
+		VALUES(BA_SEQ.NEXTVAL,#{id},#{bookNum},#{account},#{accountPassword},#{accountBalance},SYSDATE)
+	</insert>
+	
+	<update id="setUpdate" parameterType="BookACCountDTO">
+		UPDATE BOOKACCOUNT SET ACCOUNTPASSWORD=#{accountPassword},ACCOUNTBALANCE=#{accountBalance}
+		WHERE ACCOUNTNUM=#{accountNum}
+	</update>
+	
+	<delete id="setDelete" parameterType="BookACCountDTO">
+		DELETE FROM BOOKACCOUNT WHERE ACCOUNTNUM=#{accountNum}
+	</delete>
 </mapper>
