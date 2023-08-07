@@ -29,7 +29,36 @@
 	</div>
 	
 	<a class="btn btn-primary" href="./memberUpdate">회원수정</a>
+	<div id="productList">
+
+	</div>
 	
 	</section>
+
+	<script>
+		const productList=document.getElementById("productList");
+		getList(1);
+
+		productList.addEventListener("click",function(event){
+			if(event.target.classList.contains("move")){
+				alert("list")
+			}
+		})
+
+		function getList(page){
+			fetch("../bookACCount/list?page="+page,{
+			method:'get'
+			})
+			.then((response)=>{return response.text()})
+			.then((r)=>{
+				productList.innerHTML=r;
+			})
+
+		}
+
+		
+
+		
+	</script>
 </body>
 </html>

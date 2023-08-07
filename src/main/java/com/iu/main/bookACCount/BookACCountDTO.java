@@ -1,15 +1,15 @@
 package com.iu.main.bookACCount;
 
-import oracle.sql.DATE;
+import java.sql.Date;
 
 public class BookACCountDTO {
 	private Long accountNum;
 	private String id;
 	private Long bookNum;
 	private Long account;
-	private Integer accountPassword;
+	private String accountPassword;
 	private Long accountBalance;
-	private DATE accountDate;
+	private Date accountDate;
 	
 	
 	public Long getAccountNum() {
@@ -24,13 +24,16 @@ public class BookACCountDTO {
 	public Long getAccount() {
 		return account;
 	}
-	public Integer getAccountPassword() {
+	public String getAccountPassword() {
 		return accountPassword;
 	}
 	public Long getAccountBalance() {
+		if(this.accountBalance==null) {
+			this.accountBalance=0L;
+		}
 		return accountBalance;
 	}
-	public DATE getAccountDate() {
+	public Date getAccountDate() {
 		return accountDate;
 	}
 	public void setAccountNum(Long accountNum) {
@@ -45,15 +48,20 @@ public class BookACCountDTO {
 	public void setAccount(Long account) {
 		this.account = account;
 	}
-	public void setAccountPassword(Integer accountPassword) {
+	public void setAccountPassword(String accountPassword) {
 		this.accountPassword = accountPassword;
 	}
 	public void setAccountBalance(Long accountBalance) {
 		this.accountBalance = accountBalance;
 	}
-	public void setAccountDate(DATE accountDate) {
+	public void setAccountDate(Date accountDate) {
 		this.accountDate = accountDate;
 	}
+	
+	
+	
+	
+
 	
 	
 	
