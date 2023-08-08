@@ -49,5 +49,11 @@ public class NoticeDAO implements BoardDAO {
 	public int setHitUpdate(BoardDTO boardDTO) throws Exception{
 		return 0;
 	}
+	public int setFileDelete(NoticeFileDTO noticeFileDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setFileDelete", noticeFileDTO);
+	}
+	public NoticeFileDTO getFileDetail(NoticeFileDTO noticeFileDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getFileDetail", noticeFileDTO);
+	}
 
 }

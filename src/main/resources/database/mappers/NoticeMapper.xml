@@ -79,4 +79,11 @@
   		VALUES (NF_SEQ.NEXTVAL,#{noticeNum},#{fileName},#{originalName})
   	</insert>
   	
+  	<delete id="setFileDelete" parameterType="NoticeFileDTO">
+  		DELETE FROM NOTICEFILE WHERE FILENUM=#{fileNum}
+  	</delete>
+  	
+  	<select id="getFileDetail" parameterType="NoticeFileDTO" resultType="NoticeFileDTO">
+  		SELECT FILENUM,FILENAME FROM NOTICEFILE WHERE FILENUM=#{fileNum}
+  	</select>
   </mapper>

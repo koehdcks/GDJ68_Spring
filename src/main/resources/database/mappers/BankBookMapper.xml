@@ -80,5 +80,7 @@
   		BOOKRATE=#{bookRate},
   		BOOKSALE=#{bookSale} WHERE BOOKNUM = #{bookNum} 
   	</update>
-  	
+  	<select id="getComment" resultType="BankBookCommentDTO" parameterType="BankBookCommentDTO">
+  		SELECT * FROM BANKBOOKCOMMENT WHERE BOOKNUM=#{bookNum}
+  	</select>
   </mapper>

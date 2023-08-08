@@ -73,7 +73,7 @@
 			
 		<a class="btn btn-success" href="./add">글등록</a>
 	</section>
-	<script src="/resources/js/list.js"></script>
+	<script src="../resources/js/list.js"></script>
 	<!-- <script>setData('${pager.kind}')</script> -->
 </body>
 </html>

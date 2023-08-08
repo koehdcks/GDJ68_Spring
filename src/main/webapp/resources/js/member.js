@@ -14,7 +14,9 @@ let pw2CheckResult=false;
 let nameCheckResult=false;
 let emailCheckResult=false;
 
-let checkResults=[false, false, false, false, false, false];
+let checkResults=[false,false, false, false, false, false, false];
+
+
 
 
 //비어있는지 체크하는 함수
@@ -99,22 +101,40 @@ pw.addEventListener("blur",function(){
 
 id.addEventListener("blur",function(){
     const idIn=document.getElementById(id.id+"In");
-    if(id.value == ''||id.value.length>10){
-        idIn.innerText="ID는 비어있으면 x, 10글자 미만이어야 한다";
-        idIn.className="f";
-        checkResults[0]=false;
-    }else{
-        idIn.innerText="가능한 ID입니다.";
-        idIn.className="s";
-        checkResults[0]=true;
-    }
+
+    fetch("idCheck?id="+id.value, {method:"get"})
+        .then((response)=>{return response.text()})
+        .then((r)=>{
+            if(r.trim()==1){
+                alert("중복 아님")
+                if(id.value == ''||id.value.length>10){
+                    idIn.innerText="ID는 비어있으면 x, 10글자 미만이어야 한다";
+                    idIn.className="f";
+                    checkResults[0]=false;
+                    checkREsults[6]=false;
+                }else{
+                    idIn.innerText="가능한 ID입니다.";
+                    idIn.className="s";
+                    checkResults[0]=true;
+                    checkResults[6]=true;
+                }
+            }else{
+                idIn.innerHTML="이미 사용중인 ID 입니다";
+                idIn.className="f";
+                checkResults[0]=false;
+                checkREsults[6]=false;
+            }
+        })
+
+    
 });
 
 btn.addEventListener("click",function(){
    let c = checkResults.includes(false);
    if(!c){
     //form전송
-        // frm.submit();
+    alert("회원가입성공")
+    frm.onsubmit();
    }else{
     alert("필수 항목 확인")
    }

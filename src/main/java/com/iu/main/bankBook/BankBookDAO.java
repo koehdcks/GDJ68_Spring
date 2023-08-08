@@ -54,4 +54,7 @@ public class BankBookDAO {
 	public int setDelete(Long num) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setDelete", num );
 	}
+	public List<BankBookCommentDTO> getComment(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getComment", bankBookCommentDTO);
+	}
 }

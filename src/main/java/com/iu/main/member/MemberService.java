@@ -2,6 +2,8 @@ package com.iu.main.member;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +30,6 @@ public class MemberService {
 	public int setJoin(MemberDTO memberDTO,MultipartFile multipartFile,HttpSession session) throws Exception{
 		int result = memberDAO.setJoin(memberDTO);
 		
-		
-		
 		if(!multipartFile.isEmpty()) {
 		String fileName = fileManager.fileSave( "member",multipartFile, session);
 		
@@ -43,4 +43,10 @@ public class MemberService {
 		
 		return result;
 	}
+	
+	public MemberDTO getIdCheck(MemberDTO memberDTO) throws Exception{
+		return memberDAO.getIdCheck(memberDTO);
+		
+	}
+	
 }

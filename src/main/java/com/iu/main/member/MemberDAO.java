@@ -1,5 +1,7 @@
 package com.iu.main.member;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,4 +28,9 @@ public class MemberDAO {
 		public int setFileJoin(MemberFileDTO memberFileDTO) throws Exception{
 			return sqlSession.insert(NAMESPACE+"setFileJoin",memberFileDTO);
 		}
+		
+		public MemberDTO getIdCheck(MemberDTO memberDTO) throws Exception{
+			return sqlSession.selectOne(NAMESPACE+"getIdCheck",memberDTO);
+		}
+		
 }

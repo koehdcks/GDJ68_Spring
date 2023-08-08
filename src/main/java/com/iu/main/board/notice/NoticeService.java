@@ -51,11 +51,35 @@ public class NoticeService implements BoardService {
 		return noticeDAO.getDetail(boardDTO);
 	}
 	
-	public int setUpdate(BoardDTO boardDTO) throws Exception{
-		return noticeDAO.setUpdate(boardDTO);
+	public int setUpdate(BoardDTO boardDTO,MultipartFile[] files,HttpSession session) throws Exception{
+		int result = noticeDAO.setUpdate(boardDTO);
+		
+		if(files.length!=0) {
+			for(int i=0;i<files.length;i++) {
+				String fileName=fileManager.fileSave("notice", files[i], session);
+				NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
+				noticeFileDTO.setOriginalName(files[i].getOriginalFilename());
+				noticeFileDTO.setFileName(fileName);
+				noticeFileDTO.setNoticeNum(boardDTO.getNum());
+				result = noticeDAO.setFileAdd(noticeFileDTO);
+			}
+		}
+		return result;
 	}
 	
 	public int setDelete(BoardDTO boardDTO) throws Exception{
 		return noticeDAO.setDelete(boardDTO);
+	}
+	
+	public int setFileDelete(NoticeFileDTO noticeFileDTO,HttpSession session) throws Exception{
+		//폴더 파일 삭제
+		noticeFileDTO = noticeDAO.getFileDetail(noticeFileDTO);
+		boolean flag = fileManager.fileDelete(noticeFileDTO, "/resources/upload/notice/",session);
+		
+		if(flag) {
+			//db 삭제
+			return noticeDAO.setFileDelete(noticeFileDTO);
+		}
+		return 0;
 	}
 }

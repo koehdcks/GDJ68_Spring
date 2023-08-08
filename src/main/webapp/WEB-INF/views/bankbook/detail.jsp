@@ -61,13 +61,17 @@
 				</div>
 			  </div>
 			</div>
-		  </div>
+		  </div><br><br>
 		<%-- <c:if test="${dto.bookSale==1}">
 		<h1>판매중</h1>
 	</c:if>
 	<c:if test="${dto.bookSale==0}">
 		<h1>판매종료</h1>
 	</c:if>  --%>
+	<div id="comm" data-comment-num="${dto.bookNum}">
+		
+	</div>
+	
 	<script src="../resources/js/delete.js"></script>
 	<script type="text/javascript">
 		const add = document.getElementById("add");
@@ -131,5 +135,6 @@
 		setBookNum(${dto.bookNum});
 	</script> -->
 	</section>
+	
 </body>
 </html>

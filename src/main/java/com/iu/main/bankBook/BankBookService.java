@@ -55,4 +55,7 @@ public class BankBookService {
 	public int setUpdate(BankBookDTO bankBookDTO) throws Exception{
 		return bankBookDAO.setUpdate(bankBookDTO);
 	}
+	public List<BankBookCommentDTO> getComment(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		return bankBookDAO.getComment(bankBookCommentDTO);
+	}
 }

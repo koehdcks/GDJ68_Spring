@@ -8,9 +8,20 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iu.main.file.FileDTO;
+
 @Component
 public class FileManager {
 
+	//fileDelete
+	public boolean fileDelete(FileDTO fileDTO,String path,HttpSession session) {
+		//1. 어디폴더??
+		path= session.getServletContext().getRealPath(path);
+		File file = new File(path, fileDTO.getFileName());
+		System.out.println(path);
+		return file.delete();
+	}
+	
 	//fileSave
 	public String fileSave(String path,MultipartFile multipartFile,HttpSession session) throws Exception{
 		//파일의 정보를 이용해서 HDD에 파일을 저장

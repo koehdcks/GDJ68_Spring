@@ -6,10 +6,33 @@
 
 const addFile=document.getElementById("addFile");
 const fileList=document.getElementById("fileList");
-
+const delets = document.getElementsByClassName("delets");
 
 let count=0;
+if(delets != null){
+    count=delets.length;
+    alert(count);
+}
 let idx=0;
+let max=5;
+
+for(let i=0;i<delets.length;i++){
+    delets[i].addEventListener("click",function(){
+        let num = delets[i].getAttribute("data-delete-num");
+        let check = confirm("삭제시 복구 불가");
+        if(check){
+            fetch("./fileDelete?fileNum="+num, {method:'get'})
+                .then((result)=>{return result.text()})
+                .then((r)=>{
+                    if(r.trim()=='1'){
+                        this.previousSibling.previousSibling.remove();
+                        this.remove();
+                        count--;
+                    }
+                })
+        }
+    })
+}
 
 fileList.addEventListener("click",function(event){
     let cl = event.target.classList;
@@ -22,7 +45,7 @@ fileList.addEventListener("click",function(event){
 
 
 addFile.addEventListener("click",function(){
-    if(count<5){
+    if(count<max){
         //div
         let dv = document.createElement("div");//<div></div>
         let atb=document.createAttribute("class");//class=

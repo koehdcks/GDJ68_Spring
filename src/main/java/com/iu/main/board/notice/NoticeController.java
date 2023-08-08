@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -78,8 +79,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "update",method = RequestMethod.POST)
-	public String setUpdate(NoticeDTO noticeDTO) throws Exception{
-		int result = noticeService.setUpdate(noticeDTO);
+	public String setUpdate(NoticeDTO noticeDTO, MultipartFile[] photos, HttpSession session) throws Exception{
+		int result = noticeService.setUpdate(noticeDTO,photos,session);
 		return "redirect:./detail?num="+noticeDTO.getNum();
 	}
 	
@@ -93,5 +94,11 @@ public class NoticeController {
 		BoardDTO boardDTO = noticeService.getDetail(noticeDTO);
 		model.addAttribute("dto", boardDTO);
 		return "board/reply";
+	}
+	@GetMapping(value = "fileDelete")
+	public String setFileDelete(NoticeFileDTO noticeFileDTO,Model model,HttpSession session) throws Exception{
+		int result = noticeService.setFileDelete(noticeFileDTO,session);
+		model.addAttribute("result", result);
+		return "commons/ajaxResult";
 	}
 }
