@@ -80,7 +80,15 @@
   		BOOKRATE=#{bookRate},
   		BOOKSALE=#{bookSale} WHERE BOOKNUM = #{bookNum} 
   	</update>
-  	<select id="getComment" resultType="BankBookCommentDTO" parameterType="BankBookCommentDTO">
-  		SELECT * FROM BANKBOOKCOMMENT WHERE BOOKNUM=#{bookNum}
+  	<!-- comment -->
+  	<select id="getCommentTotal" resultType="Long" parameterType="BankBookCommentDTO">
+  		SELECT COUNT(COMMENTNUM) FROM BANKBOOKCOMMENT
+  		WHERE BOOKNUM = #{bookNum}
+  	</select>
+  	<select id="getComment" resultType="BankBookCommentDTO" parameterType="Map">
+  		SELECT * FROM
+  		(SELECT ROWNUM R, C.* FROM
+  		(SELECT * FROM BANKBOOKCOMMENT WHERE BOOKNUM=#{comment.bookNum} ORDER BY COMMENTNUM DESC)C)
+  		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
   	</select>
   </mapper>

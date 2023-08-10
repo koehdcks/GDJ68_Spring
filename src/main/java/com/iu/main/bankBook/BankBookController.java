@@ -73,10 +73,10 @@ public class BankBookController {
 		int result = bankBookService.setDelete(bookNum);
 		return "redirect: ./list";
 	}
-	
+	//-------------------comment----------------------------
 	@GetMapping(value = "comment")
-	public void getComment(BankBookCommentDTO bankBookCommentDTO,Model model) throws Exception{
-		List<BankBookCommentDTO> ar = bankBookService.getComment(bankBookCommentDTO);
-		model.addAttribute("comment", ar);
+	public void getComment(Pager pager,BankBookCommentDTO bankBookCommentDTO,Model model) throws Exception{
+		List<BankBookCommentDTO> ar = bankBookService.getComment(pager,bankBookCommentDTO);
+		model.addAttribute("commentList", ar);
 	}
 }

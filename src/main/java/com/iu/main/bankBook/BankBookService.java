@@ -1,7 +1,9 @@
 package com.iu.main.bankBook;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -55,7 +57,14 @@ public class BankBookService {
 	public int setUpdate(BankBookDTO bankBookDTO) throws Exception{
 		return bankBookDAO.setUpdate(bankBookDTO);
 	}
-	public List<BankBookCommentDTO> getComment(BankBookCommentDTO bankBookCommentDTO) throws Exception{
-		return bankBookDAO.getComment(bankBookCommentDTO);
+	//-------------comment
+	public List<BankBookCommentDTO> getComment(Pager pager,BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		Map<String, Object> map = new HashMap<String,Object>();
+		pager.makeRowNum();
+		pager.makePageNum(bankBookDAO.getCommentTotal(bankBookCommentDTO));
+		map.put("pager", pager);
+		map.put("comment", bankBookCommentDTO);
+		
+		return bankBookDAO.getComment(map);
 	}
 }

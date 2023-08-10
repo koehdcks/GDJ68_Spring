@@ -39,29 +39,50 @@
 		const productList=document.getElementById("productList");
 
 		getList(1);
-		productList.addEventListener("click",function(event){
-			if(event.target.classList.contains("move")){
-				let page = event.target.getAttribute("data-num");
-				console.log("before")
-				getList(page);
-			}
+		//자바스크립트
+		// productList.addEventListener("click",function(event){
+		// 	if(event.target.classList.contains("move")){
+		// 		let page = event.target.getAttribute("data-num");
+		// 		console.log("before")
+		// 		getList(page);
+		// 	}
+		// })
+
+		//제이쿼리
+		$('#productList').on("click",".move",function(){
+			let page = $(this).attr("data-num")
+			getList(page);
 		})
 
 		function getList(page){
-			fetch("../bookACCount/list?page="+page,{
-			method:'get'
-			})
-			.then((response)=>{return response.text()})
-			.then((r)=>{
-				console.log("ajax 실행")
-				productList.innerHTML=r;
-				console.log("after")
-			})
+			//자바스크립트로 작성
+			// fetch("../bookACCount/list?page="+page,{
+			// method:'get'
+			// })
+			// .then((response)=>{return response.text()})
+			// .then((r)=>{
+			// 	console.log("ajax 실행")
+			// 	productList.innerHTML=r;
+			// 	console.log("after")
+			// })
+
+			//제이쿼리로 작성
+			$.ajax({
+			type:'get',
+			url:"../bookACCount/list",
+			data:{
+				page:page
+			},
+			success:function(result){
+				$('#productList').html(result.trim());
+			},
+			error:function(){
+				alert("error")
+			}
+		})
 
 		}
-
 		
-
 		
 	</script>
 </body>
