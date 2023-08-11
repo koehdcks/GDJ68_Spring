@@ -91,4 +91,7 @@
   		(SELECT * FROM BANKBOOKCOMMENT WHERE BOOKNUM=#{comment.bookNum} ORDER BY COMMENTNUM DESC)C)
   		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
   	</select>
+  	<insert id="setCommentAdd" parameterType="BankBookCommentDTO">
+  		INSERT INTO BANKBOOKCOMMENT(COMMENTNUM,BOOKNUM,ID,COMMENTCONTENTS,COMMENTDATE,COMMENTRATING) VALUES(BC_SEQ.NEXTVAL,#{bookNum},#{id},#{commentContents},SYSDATE,5)
+  	</insert>
   </mapper>

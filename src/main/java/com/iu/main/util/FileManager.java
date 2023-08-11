@@ -26,7 +26,6 @@ public class FileManager {
 	public String fileSave(String path,MultipartFile multipartFile,HttpSession session) throws Exception{
 		//파일의 정보를 이용해서 HDD에 파일을 저장
 				//1. 어디에 저장??
-				path="/resources/upload/"+path+"/";
 				//2. 실제 경로 알아오기
 				//jsp : application
 				//java : ServletContext

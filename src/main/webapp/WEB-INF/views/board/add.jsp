@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../temp/bootStrap.jsp"></c:import>
-
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
@@ -26,9 +27,9 @@
 					type="text" name="subject" id="subject" class="form-control"><br>
 			</div>
 			<div class="mb-3">
-				<label for="formContents" class="form-label">글내용</label>
+				<label for="contents" class="form-label">글내용</label>
 				<textarea rows="" cols="" name="contents" class="form-control"
-					id="formContents"></textarea>
+					id="contents"></textarea>
 			</div>
 			<!-- <select name="bookSale">     2번째방법
 				<option value="1" selected>판매가능</option>     
@@ -52,6 +53,51 @@
 		const btn = document.getElementById("btn");
 		const subject = document.getElementById("subject");
 		const frm = document.getElementById("frm");
+
+		$("#contents").summernote({
+			height:400,
+			callbacks:{
+				onImageUpload: function(files){
+					alert("이미지 업로드")
+					//이미지를 server로 전송하고
+					//응답으로 이미지경로와 파일명을 받아서
+					//img 태그를 만들어서 src속성에 이미지경로를 넣는것
+					let formData = new FormData();//<form></form>
+					formData.append("files",files[0]);// <input type="file" name="files">
+					$.ajax({
+						type:'post',
+						url:"setContentsImg",
+						data:formData,
+						enctype:'multipart/form-data',
+						cache:false,
+						contentType:false,
+						processData:false,
+						success:function(result){
+							$('#contents').summernote('insertImage',result.trim());
+						},error:function(){
+							console.log("에러")
+						}
+					})
+				},
+				onMediaDelete:function(files){
+					let path = $(files[0]).attr("src");// /resources/upload/notice/파일명
+					$.ajax({
+						type:'post',
+						url:'./setContentsImgDelete',
+						data:{
+							path:path
+						},
+						success:function(result){
+							console.log(result);
+						},
+						error:function(){
+							console.log("에러");
+						}
+					})
+				}
+			}
+			
+		});
 
 		btn.addEventListener("click",function(){
 			if(subject.value==''){

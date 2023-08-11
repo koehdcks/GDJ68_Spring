@@ -48,7 +48,7 @@
   		<result column="NOTICETITLE" property="subject"/>
   		<result column="NOTICECONTENTS" property="contents"/>
   		<result column="NOTICEDATE" property="createDate"/>
-  		<result column="NOTICEDHIT" property="hit"/>
+  		<result column="NOTICEHIT" property="hit"/>
   		
   		<collection property="fileDTOs" javaType="List" ofType="NoticeFileDTO">
   		<id column="FILENUM" property="fileNum"/>

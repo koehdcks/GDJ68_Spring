@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.main.board.BoardDTO;
 import com.iu.main.board.BoardService;
+import com.iu.main.file.FileDTO;
 import com.iu.main.util.FileManager;
 import com.iu.main.util.Pager;
 
@@ -21,6 +22,23 @@ public class NoticeService implements BoardService {
 	private NoticeDAO noticeDAO;
 	@Autowired
 	private FileManager fileManager;
+	
+	public boolean setContentsImgDelete(String path,HttpSession session) throws Exception {
+		//path: /resources/upload/notice/파일명
+		//path안의 경로와 파일명 분리
+		FileDTO fileDTO = new FileDTO();
+		fileDTO.setFileName(path.substring(path.lastIndexOf("/")+1));
+//		path = path.substring(0,path.lastIndexOf("/")+1);
+		path="/resources/upload/notice/";
+		return fileManager.fileDelete(fileDTO, path, session);
+	}	
+	
+	public String setContentsImg(MultipartFile file,HttpSession session) throws Exception{
+		String path = "/resources/upload/notice/";
+		String fileName = fileManager.fileSave(path, file, session);
+		return path+fileName;
+		
+	}
 	
 	public List<BoardDTO> getList(Pager pager) throws Exception{
 		pager.makeRowNum();

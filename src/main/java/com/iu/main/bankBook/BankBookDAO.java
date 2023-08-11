@@ -61,4 +61,7 @@ public class BankBookDAO {
 	public List<BankBookCommentDTO> getComment(Map<String, Object> map) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getComment",map );
 	}
+	public int setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setCommentAdd",bankBookCommentDTO);
+	}
 }

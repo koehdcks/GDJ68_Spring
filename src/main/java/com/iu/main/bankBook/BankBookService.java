@@ -67,4 +67,8 @@ public class BankBookService {
 		
 		return bankBookDAO.getComment(map);
 	}
+	
+	public int setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		return bankBookDAO.setCommentAdd(bankBookCommentDTO);
+	}
 }

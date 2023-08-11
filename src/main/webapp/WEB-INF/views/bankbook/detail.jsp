@@ -49,6 +49,10 @@
 			<table id="commentList">
 				
 			</table>
+			<div id="more">
+
+			</div>
+
 		</div>
 
 		<!--Modal-->
@@ -66,7 +70,7 @@
 				</div>
 				<div class="modal-footer">
 				  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Close</button>
-				  <button type="button" class="btn btn-primary" data-add-num="${dto.bookNum}" id="add">상품가입</button>
+				  <button type="button" class="btn btn-primary" data-add-num="${dto.bookNum}" data-total-page="${pager.totalPage}" id="add" >상품가입</button>
 				</div>
 			  </div>
 			</div>
@@ -81,8 +85,47 @@
 	
 	<script src="../resources/js/delete.js"></script>
 	<script>
-		
-		getCommentList($('#add').attr("data-add-num"),1)
+		let totalPage = 0;
+		let bn= $('#add').attr("data-add-num")
+		let pageNum=1;
+		let tpn= $('#add').attr("data-total-page")
+
+		$("#commentAdd").click(function(){
+			let contents=$("#comment").val();
+			$.ajax({
+				type:'post',
+				url:"commentAdd",
+				data:{
+					bookNum:bn,
+					commentContents:contents
+				},
+				success:function(result){
+					if(result.trim()>0){
+						alert('댓글등록OK');
+						$("#commentList").empty();
+						$("#comment").val("");
+						pageNum=1;
+						getCommentList(bn,1);
+					}
+				},
+				error:function(){
+					alert("에러");
+				}
+			})
+		})
+
+
+		$("#more").on("click","#moreButton",function(){
+			if(pageNum>=totalPage){
+				alert("마지막페이지")
+				return
+			}
+			pageNum++;
+			getCommentList(bn,pageNum)
+		});
+
+		getCommentList(bn,pageNum)
+
 		function getCommentList(bookNum,page){
 			$.ajax({
 				type:'get',
@@ -93,11 +136,15 @@
 				},
 				success:function(result){
 					$('#commentList').append(result);
+					totalPage = $('#totalPage').attr('data-totalPage')
+					let btn5 = '<button id="moreButton">더보기('+pageNum+'/'+totalPage+')</button>';
+					$('#more').html(btn5);
 				},
 				error:function(){
 					alert("에러")
 				}
 			})
+			
 		}
 		// const add = document.getElementById("add");
 		// add.addEventListener("click",function(){

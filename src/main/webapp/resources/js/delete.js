@@ -2,7 +2,6 @@ let del = document.getElementById("del");
 const c1 = document.getElementsByClassName("c1");
 const frm = document.getElementById("frm");
 const comm = document.getElementById("comm");
-let comNum = comm.getAttribute("data-comment-num")
 
 
 for(c of c1){
@@ -26,13 +25,6 @@ function setBookNum(num){
     bookNum=num;
 }
 
-fetch("/bankbook/comment?bookNum="+comNum,{
-    method:'get'
-    })
-    .then((response)=>{return response.text()})
-    .then((r)=>{
-        comm.innerHTML=r;
-    })
 
 // del.addEventListener("click",function(){
 // 	let result=confirm("삭제하시겠습니까?");

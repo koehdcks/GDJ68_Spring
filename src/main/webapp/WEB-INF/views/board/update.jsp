@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../temp/bootStrap.jsp"></c:import>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
@@ -26,8 +28,8 @@
 			<input type="text" name="subject" class="form-control" id="formName" value="${dto.subject}" ><br>
 		</div>
 		<div>
-		<label for="formContents" class="form-label">내용</label>
-			<textarea class="form-control mb-5" rows="" cols="" name="contents" id="formContents">${dto.contents}</textarea>
+		<label for="contents" class="form-label">내용</label>
+			<textarea class="form-control mb-5" rows="" cols="" name="contents" id="contents">${dto.contents}</textarea>
 		</div>
 		<div class="mb-3">
 			<button type="button" id="addFile">File추가</button>
@@ -49,5 +51,9 @@
 		</form>
 	</section>
 	<script src="../resources/js/file.js"></script>
+	<script>
+		$('#contents').summernote();
+
+	</script>
 </body>
 </html>
