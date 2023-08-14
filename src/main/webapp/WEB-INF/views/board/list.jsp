@@ -70,8 +70,9 @@
   				</div>
   			</form>		
 		</div>
-			
-		<a class="btn btn-success" href="./add">글등록</a>
+		<c:if test="${not empty member}">	
+			<a class="btn btn-success" href="./add">글등록</a>
+		</c:if>
 	</section>
 	<script src="../resources/js/list.js"></script>
 	<!-- <script>setData('${pager.kind}')</script> -->

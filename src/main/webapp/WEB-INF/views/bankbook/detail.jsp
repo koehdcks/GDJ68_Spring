@@ -139,6 +139,7 @@
 					totalPage = $('#totalPage').attr('data-totalPage')
 					let btn5 = '<button id="moreButton">더보기('+pageNum+'/'+totalPage+')</button>';
 					$('#more').html(btn5);
+
 				},
 				error:function(){
 					alert("에러")

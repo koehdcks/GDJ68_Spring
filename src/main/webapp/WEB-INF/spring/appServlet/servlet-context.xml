@@ -21,6 +21,40 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- Interceptor 설정  -->
+	<!-- <beans:bean class="com.iu.main.interceptors.InterceptorTest1" id="interceptorTest1"></beans:bean> -->
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/notice/*"/>
+			<mapping path="/qna/*"/>
+			<mapping path="/member/*"/>
+			<exclude-mapping path="/member/login"/>
+			<exclude-mapping path="/member/join"/>
+			<exclude-mapping path="/member/logout"/>
+			<exclude-mapping path="/notice/list"/>
+			<exclude-mapping path="/qna/list"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		<!-- <interceptor>
+			<mapping path="/notice/*"/>
+			<exclude-mapping path="/notice/add"/>
+			<beans:ref bean="interceptorTest1"/>
+		</interceptor> -->
+		
+		<!-- <interceptor>
+			<mapping path="/notice/*"/>
+			<beans:bean class="com.iu.main.interceptors.InterceptorTest1"></beans:bean>
+		</interceptor> -->
+		
+		<!-- <interceptor>
+			<mapping path="/notice/*"/>
+			<beans:ref bean="interceptorTest1"/>
+		</interceptor> -->
+		
+	
+	</interceptors>
+	
 	<context:component-scan base-package="com.iu.main" />
 	
 	
