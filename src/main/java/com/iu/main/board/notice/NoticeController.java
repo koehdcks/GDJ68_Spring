@@ -28,6 +28,15 @@ public class NoticeController {
 	public String getBoardName() throws Exception {
 		return "notice";
 	}
+	
+	@GetMapping("fileDown")
+	public String getFileDown(NoticeFileDTO noticeFileDTO, Model model)throws Exception{
+		noticeFileDTO = noticeService.getFileDown(noticeFileDTO);
+		model.addAttribute("file", noticeFileDTO);
+		
+		return "fileManager";
+	}
+	
 	@PostMapping(value = "setContentsImgDelete")
 	public String setContentsImgDelete(String path,HttpSession session,Model model) throws Exception {
 		boolean check = noticeService.setContentsImgDelete(path, session);

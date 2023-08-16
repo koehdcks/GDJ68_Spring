@@ -23,6 +23,10 @@ public class NoticeService implements BoardService {
 	@Autowired
 	private FileManager fileManager;
 	
+	public NoticeFileDTO getFileDown(NoticeFileDTO noticeFileDTO)throws Exception{
+		return noticeDAO.getFileDetail(noticeFileDTO);
+	}
+	
 	public boolean setContentsImgDelete(String path,HttpSession session) throws Exception {
 		//path: /resources/upload/notice/파일명
 		//path안의 경로와 파일명 분리
@@ -50,10 +54,11 @@ public class NoticeService implements BoardService {
 	
 	public int setAdd(BoardDTO boardDTO,MultipartFile[] files,HttpSession session) throws Exception{
 		int result = noticeDAO.setAdd(boardDTO);
+		String path = "/resources/upload/notice/";
 		
 		if(files.length!=0) {
 			for(int i=0;i<files.length;i++) {
-				String fileName=fileManager.fileSave("notice", files[i], session);
+				String fileName=fileManager.fileSave(path, files[i], session);
 				NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
 				noticeFileDTO.setOriginalName(files[i].getOriginalFilename());
 				noticeFileDTO.setFileName(fileName);

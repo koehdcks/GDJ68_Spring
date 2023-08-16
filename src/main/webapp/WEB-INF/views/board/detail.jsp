@@ -38,7 +38,7 @@
 
 		</table>
 		<c:forEach items="${dto.fileDTOs}" var="f">
-			<img alt="" src="/resources/upload/${board}/${f.fileName }">
+			<a href="./fileDown?fileNum=${f.fileNum}">${f.originalName}</a>
 		</c:forEach>
 		
 		<form id="frm" action="">

@@ -19,12 +19,17 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1"></beans:property>
+	</beans:bean>
+	
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0"></beans:property>
 	</beans:bean>
 	
 	<!-- Interceptor 설정  -->
 	<!-- <beans:bean class="com.iu.main.interceptors.InterceptorTest1" id="interceptorTest1"></beans:bean> -->
 	
-	<interceptors>
+	<!-- <interceptors>
 		<interceptor>
 			<mapping path="/notice/*"/>
 			<mapping path="/qna/*"/>
@@ -51,24 +56,24 @@
 			<beans:ref bean="adminInterceptor"/>
 		</interceptor>
 		
-		<!-- <interceptor>
+		<interceptor>
 			<mapping path="/notice/*"/>
 			<exclude-mapping path="/notice/add"/>
 			<beans:ref bean="interceptorTest1"/>
-		</interceptor> -->
+		</interceptor>
 		
-		<!-- <interceptor>
+		<interceptor>
 			<mapping path="/notice/*"/>
 			<beans:bean class="com.iu.main.interceptors.InterceptorTest1"></beans:bean>
-		</interceptor> -->
+		</interceptor>
 		
-		<!-- <interceptor>
+		<interceptor>
 			<mapping path="/notice/*"/>
 			<beans:ref bean="interceptorTest1"/>
-		</interceptor> -->
+		</interceptor>
 		
 	
-	</interceptors>
+	</interceptors> -->
 	
 	<context:component-scan base-package="com.iu.main" />
 	
